@@ -1,5 +1,8 @@
 .app-intro {
   background-color: #161616;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -43,6 +46,7 @@
 }
 
 .typed {
+  text-shadow: 6px 5px 8px rgba(0,0,0,0.5);
   color: #fff;
   overflow: hidden;
   white-space: nowrap;
