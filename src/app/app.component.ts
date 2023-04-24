@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
+import { AppIntroType } from './app-intro/app-intro-type';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'KingOfChess';
+
+  animationType = AppIntroType;
+
+  constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
+    this.matIconRegistry.addSvgIcon(
+      'google',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg')
+    );
+  }
 }

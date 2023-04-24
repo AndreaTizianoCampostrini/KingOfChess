@@ -5,11 +5,7 @@
   "projects": {
     "KingOfChess": {
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "styleext": "css"
-        }
-      },
+      "schematics": {},
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -30,6 +26,7 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []

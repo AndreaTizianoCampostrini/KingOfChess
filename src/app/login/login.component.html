@@ -24,5 +24,9 @@
   </mat-card-content>
   <mat-card-actions>
     <button mat-button routerLink="/register">Registrati</button>
+    <button mat-flat-button color="primary" (click)="signInWithGoogle()">
+      <mat-icon svgIcon="google" aria-hidden="false" aria-label="Google logo"></mat-icon>
+      Accedi con Google
+    </button>
   </mat-card-actions>
 </mat-card>
