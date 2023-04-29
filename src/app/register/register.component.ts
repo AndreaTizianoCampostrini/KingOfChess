@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { loadFull } from 'tsparticles';
+import { ISourceOptions, Container, Engine } from 'tsparticles-engine';
+import { particlesOptions } from './particles-config';
 
 @Component({
   selector: 'app-register',
@@ -7,6 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+  particlesOptions: ISourceOptions = particlesOptions;
   registerForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
@@ -35,5 +39,14 @@ export class RegisterComponent {
       // Registra il nuovo utente
       console.log('Registra il nuovo utente con username, email e password:', username, email, password);
     }
+  }
+
+  /*----- Particles -----*/
+  particlesLoaded(container: Container): void {
+    console.log("particles loaded");
+  }
+
+  async particlesInit(engine: Engine): Promise<void> {
+    await loadFull(engine);
   }
 }

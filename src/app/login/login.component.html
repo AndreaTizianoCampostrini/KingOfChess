@@ -1,5 +1,5 @@
 <!-- login.component.html -->
-<mat-card>
+<!--<mat-card>
   <mat-card-header>
     <mat-card-title>Login</mat-card-title>
   </mat-card-header>
@@ -30,3 +30,32 @@
     </button>
   </mat-card-actions>
 </mat-card>
+-->
+<ng-particles id="particles" [options]="particlesOptions" [particlesInit]="particlesInit" (particlesLoaded)="particlesLoaded($event)"></ng-particles>
+<!--<div class="login-page">
+  <form class="login-form">
+    <h2>Accesso</h2>
+
+    <input type="text" placeholder="Username" required>
+    <input type="email" placeholder="Email" required>
+    <input type="password" placeholder="Password" required>
+
+    <div class="remember-me">
+      <input type="checkbox" id="remember-me">
+      <label for="remember-me">Ricordami</label>
+    </div>
+
+    <button type="submit">Login</button>
+
+    <div class="social-login">
+      <button class="google-login">Login con Google</button>
+      <button class="social-login">Login con Social</button>
+    </div>
+
+    <a href="/registration">Registrati</a>
+  </form>
+
+  <div class="footer">
+    <p>&copy; 2023 KingOfChess</p>
+  </div>
+</div>-->

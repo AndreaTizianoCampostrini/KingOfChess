@@ -2,6 +2,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { particlesOptions } from './particles-config';
+import { Container, Engine, ISourceOptions } from "tsparticles-engine";
+import { loadFull } from "tsparticles";
+
 
 @Component({
   selector: 'app-login',
@@ -9,6 +13,7 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  particlesOptions: ISourceOptions = particlesOptions;
   loginForm: FormGroup;
 
   constructor(private fb: FormBuilder, private authService: AuthService) {
@@ -36,5 +41,14 @@ export class LoginComponent {
 
   signInWithGoogle() {
     this.authService.signInWithGoogle();
+  }
+
+  /*----- Particles -----*/
+  particlesLoaded(container: Container): void {
+    console.log("particles loaded");
+  }
+
+  async particlesInit(engine: Engine): Promise<void> {
+    await loadFull(engine);
   }
 }

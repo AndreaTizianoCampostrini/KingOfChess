@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
+import { NgParticlesModule } from "ng-particles";
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
@@ -20,6 +20,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
 import { IntroScreenComponent } from './intro-screen/intro-screen.component';
 import { AppIntroComponent } from './app-intro/app-intro.component';
+import { CursorAnimationComponent } from './cursor-animation/cursor-animation.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { AppIntroComponent } from './app-intro/app-intro.component';
     RegisterComponent,
     LoginComponent,
     IntroScreenComponent,
-    AppIntroComponent
+    AppIntroComponent,
+    CursorAnimationComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +48,8 @@ import { AppIntroComponent } from './app-intro/app-intro.component';
     AngularFireModule.initializeApp(environment.firebase),
     provideAuth(() => getAuth()),
     AngularFireAuthModule,
+    NgParticlesModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

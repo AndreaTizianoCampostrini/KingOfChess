@@ -8,4 +8,16 @@
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* cursor */
+* {
+  cursor: url('./assets/cursor-small.png'), url('./assets/cursor-small2.svg'), url('./assets/cursor-small3.jpg'), auto;
+}
+
+button:hover {
+  cursor: url('./assets/cursor-big.png'), url('./assets/cursor-big2.svg'), url('./assets/cursor-big3.jpg'), pointer !important;
+}
+
+input:hover {
+  cursor: url('./assets/cursor-big.png'), url('./assets/cursor-big2.svg'), url('./assets/cursor-big3.jpg'), pointer !important;
+}

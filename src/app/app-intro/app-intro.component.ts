@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 import { AppIntroType } from './app-intro-type';
 
@@ -19,6 +19,8 @@ export class AppIntroComponent implements OnInit {
   @Input() animationDuration: number = 0.5;
   @Input() duration: number = 3;
   @Input() animationType: AppIntroType = AppIntroType.SlideLeft;
+  @Output() introExitComplete = new EventEmitter();
+  @Output() introAnimationComplete = new EventEmitter();
 
   constructor() {
     this.showIntro = true;
@@ -60,8 +62,9 @@ export class AppIntroComponent implements OnInit {
       }
 
       this.transition = transitionStyle;
-
+      this.introAnimationComplete.emit();
       setTimeout(() => {
+        this.introExitComplete.emit();
         this.showIntro = false;
       }, this.animationDuration * 1000);
     }, this.duration * 1000);

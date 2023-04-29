@@ -1,7 +1,8 @@
-<app-app-intro
+<app-app-intro (introAnimationComplete)="introAnimationComplete = true" (introExitComplete)="introExitComplete = true" *ngIf="!introExitComplete"
   [animationDuration]="0.75"
   [animationType]="animationType.FadeOut"
   [duration]="2"
 ></app-app-intro>
 
-<router-outlet></router-outlet>
+<router-outlet *ngIf="introAnimationComplete"></router-outlet>
+<app-cursor-animation></app-cursor-animation>

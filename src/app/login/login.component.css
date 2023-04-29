@@ -1,0 +1,28 @@
+/*.login-page {
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: 0 24px;
+  height: 100vh;
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.login-form input[type="text"],
+.login-form input[type="email"],
+.login-form input[type="password"] {
+}
+
+.login-form button {
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+*/
