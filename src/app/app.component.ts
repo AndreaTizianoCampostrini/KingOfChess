@@ -2,9 +2,6 @@ import { Component } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AppIntroType } from './app-intro/app-intro-type';
-import { ClickMode, Container, Engine, HoverMode, ISourceOptions, MoveDirection, OutMode } from 'tsparticles-engine';
-import { particlesOptions } from './login/particles-config';
-import { loadFull } from 'tsparticles';
 
 @Component({
   selector: 'app-root',

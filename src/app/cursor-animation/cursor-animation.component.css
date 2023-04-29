@@ -4,8 +4,8 @@
   width: 25px;
   border-radius: 50%;
   background-color: rgba(0, 0, 0, 0.5);
-  pointer-events: none;
   z-index: 9999;
+  pointer-events: visible;
   animation: clickAnimation 0.1s forwards;
 }
 
