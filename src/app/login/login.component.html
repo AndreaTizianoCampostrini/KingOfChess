@@ -32,6 +32,20 @@
 </mat-card>
 -->
 <ng-particles id="particles" [options]="particlesOptions" [particlesInit]="particlesInit" (particlesLoaded)="particlesLoaded($event)"></ng-particles>
+<main class="box">
+  <h2>Login</h2>
+  <form>
+    <div class="inputBox">
+      <label for="userName">Username</label>
+      <input type="text" name="userName" id="userName" placeholder="type your username" required>
+    </div>
+    <div class="inputBox">
+      <label for="userPassword">Password</label>
+      <input type="password" name="userPassword" id="userPassword" placeholder="type your password" required>
+    </div>
+    <input type="submit" name="" value="Submit">
+  </form>
+</main>
 <!--<div class="login-page">
   <form class="login-form">
     <h2>Accesso</h2>

@@ -11,9 +11,10 @@ html, body { height: 100%; }
 
 /* cursor */
 * {
-  cursor: url('./assets/cursor-small.png'), url('./assets/cursor-small2.svg'), url('./assets/cursor-small3.jpg'), auto;
+  cursor: none !important;
+  /*cursor: url('./assets/cursor-small.png'), url('./assets/cursor-small2.svg'), url('./assets/cursor-small3.jpg'), auto;*/
 }
-
+/*
 button:hover {
   cursor: url('./assets/cursor-big.png'), url('./assets/cursor-big2.svg'), url('./assets/cursor-big3.jpg'), pointer !important;
 }
@@ -21,3 +22,4 @@ button:hover {
 input:hover {
   cursor: url('./assets/cursor-big.png'), url('./assets/cursor-big2.svg'), url('./assets/cursor-big3.jpg'), pointer !important;
 }
+*/

@@ -22,6 +22,7 @@ import { IntroScreenComponent } from './intro-screen/intro-screen.component';
 import { AppIntroComponent } from './app-intro/app-intro.component';
 import { CursorAnimationComponent } from './cursor-animation/cursor-animation.component';
 import { CommonModule } from '@angular/common';
+import { CursorComponent } from './cursor/cursor.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { CommonModule } from '@angular/common';
     LoginComponent,
     IntroScreenComponent,
     AppIntroComponent,
-    CursorAnimationComponent
+    CursorAnimationComponent,
+    CursorComponent
   ],
   imports: [
     BrowserModule,
