@@ -20,9 +20,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
 import { IntroScreenComponent } from './intro-screen/intro-screen.component';
 import { AppIntroComponent } from './app-intro/app-intro.component';
-import { CursorAnimationComponent } from './cursor-animation/cursor-animation.component';
 import { CommonModule } from '@angular/common';
 import { CursorComponent } from './cursor/cursor.component';
+import { CursorService } from './cursor.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,6 @@ import { CursorComponent } from './cursor/cursor.component';
     LoginComponent,
     IntroScreenComponent,
     AppIntroComponent,
-    CursorAnimationComponent,
     CursorComponent
   ],
   imports: [
@@ -53,7 +52,7 @@ import { CursorComponent } from './cursor/cursor.component';
     NgParticlesModule,
     CommonModule
   ],
-  providers: [],
+  providers: [CursorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
