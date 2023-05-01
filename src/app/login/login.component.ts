@@ -6,7 +6,6 @@ import { particlesOptions } from './particles-config';
 import { Container, Engine, ISourceOptions } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

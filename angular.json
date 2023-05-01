@@ -29,7 +29,10 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/@fortawesome/fontawesome-free/js/all.js",
+              "node_modules/@fortawesome/fontawesome-free/js/fontawesome.js"
+            ]
           },
           "configurations": {
             "production": {

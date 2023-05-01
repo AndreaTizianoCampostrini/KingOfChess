@@ -12,14 +12,17 @@ export class IntroScreenComponent implements OnDestroy {
   }
 
   onMouseEnter() {
-    this.cursorService.changeCursor('../../assets/cursor-small-hover.png');
+    this.cursorService.addClassToCursor(document.querySelector('.cursor'), 'cursor-hover');
+    this.cursorService.changeCursor('../../assets/cursor-black.png');
   }
 
   onMouseLeave() {
-    this.cursorService.changeCursor('../../assets/cursor-small.png');
+    this.cursorService.removeClassFromCursor(document.querySelector('.cursor'), 'cursor-hover');
+    this.cursorService.changeCursor('../../assets/cursor-white.png');
   }
 
   ngOnDestroy() {
-    this.cursorService.changeCursor('../../assets/cursor-small.png');
+    this.cursorService.removeClassFromCursor(document.querySelector('.cursor'), 'cursor-hover');
+    this.cursorService.changeCursor('../../assets/cursor-white.png');
   }
 }

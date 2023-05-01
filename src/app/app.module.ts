@@ -23,6 +23,11 @@ import { AppIntroComponent } from './app-intro/app-intro.component';
 import { CommonModule } from '@angular/common';
 import { CursorComponent } from './cursor/cursor.component';
 import { CursorService } from './cursor.service';
+import {
+  FontAwesomeModule,
+  FaIconLibrary,
+} from '@fortawesome/angular-fontawesome';
+import { faTwitter, faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 
 @NgModule({
   declarations: [
@@ -50,9 +55,18 @@ import { CursorService } from './cursor.service';
     provideAuth(() => getAuth()),
     AngularFireAuthModule,
     NgParticlesModule,
-    CommonModule
+    CommonModule,
+    FontAwesomeModule
   ],
   providers: [CursorService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(library: FaIconLibrary) {
+    library.addIcons(
+      faTwitter,
+      faFacebook,
+      faGoogle
+    );
+  }
+}

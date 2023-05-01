@@ -40,4 +40,12 @@ export class CursorService {
   cleanupAnimation(element: any) {
     element.parentNode.removeChild(element);
   }
+
+  addClassToCursor(element: any, className: string) {
+    element.classList.add(className);
+  }
+
+  removeClassFromCursor(element: any, className: string) {
+    element.classList.remove(className);
+  }
 }

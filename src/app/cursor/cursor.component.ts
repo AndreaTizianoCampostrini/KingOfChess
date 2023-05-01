@@ -8,7 +8,7 @@ import { CursorService } from '../cursor.service';
 })
 export class CursorComponent implements OnInit {
 
-  cursorImage: string = '../../assets/cursor-small.png'; // Immagine di default del cursore
+  cursorImage: string = '../../assets/cursor-white.png'; // Immagine di default del cursore
   cursorPos: { x: number, y: number } = { x: 0, y: 0 }; // Posizione del cursore
 
   constructor(private cursorService: CursorService, private el: ElementRef, private renderer: Renderer2) { }
@@ -38,5 +38,4 @@ export class CursorComponent implements OnInit {
   onMouseClick(event: MouseEvent) {
     this.cursorService.animateClick(event.clientX, event.clientY);
   }
-
 }

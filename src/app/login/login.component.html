@@ -32,20 +32,25 @@
 </mat-card>
 -->
 <ng-particles id="particles" [options]="particlesOptions" [particlesInit]="particlesInit" (particlesLoaded)="particlesLoaded($event)"></ng-particles>
-<main class="box">
+<div class="box">
   <h2>Login</h2>
   <form>
+    <div class="social-container">
+      <a href="#"><fa-icon [icon]="['fab', 'facebook']"></fa-icon></a>
+      <a href="#"><fa-icon [icon]="['fab', 'google']"></fa-icon></a>
+      <a href="#"><fa-icon [icon]="['fab', 'twitter']"></fa-icon></a>
+    </div>
     <div class="inputBox">
-      <label for="userName">Username</label>
-      <input type="text" name="userName" id="userName" placeholder="type your username" required>
+      <label for="userEmail">Email</label>
+      <input type="text" name="userEmail" id="userEmail" placeholder="type your email" required>
     </div>
     <div class="inputBox">
       <label for="userPassword">Password</label>
       <input type="password" name="userPassword" id="userPassword" placeholder="type your password" required>
     </div>
-    <input type="submit" name="" value="Submit">
+    <input type="submit" name="" value="Submit" class="submit-button">
   </form>
-</main>
+</div>
 <!--<div class="login-page">
   <form class="login-form">
     <h2>Accesso</h2>
