@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding, HostListener } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AppIntroType } from './app-intro/app-intro-type';
@@ -13,11 +13,37 @@ export class AppComponent {
   introAnimationComplete: boolean = false;
   introExitComplete: boolean = false;
   animationType = AppIntroType;
+  isMobile: boolean;
 
   constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
+    if (window.matchMedia("(pointer:fine)").matches) {
+      this.isMobile = false;
+    } else {
+      this.isMobile = true;
+    }
+
     this.matIconRegistry.addSvgIcon(
       'google',
       this.domSanitizer.bypassSecurityTrustResourceUrl('https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg')
     );
+  }
+  ngOnInit(): void {
+    if (window.matchMedia("(pointer:fine)").matches) {
+      this.isMobile = false;
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    if (window.matchMedia("(pointer:fine)").matches) {
+      this.isMobile = false;
+    } else {
+      this.isMobile = true;
+    }
+  }
+
+  @HostBinding('style.cursor')
+  get cursorStyle() {
+    return this.isMobile ? 'default' : 'none !important';
   }
 }
