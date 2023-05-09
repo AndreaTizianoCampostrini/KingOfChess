@@ -31,24 +31,43 @@
   </mat-card-actions>
 </mat-card>
 -->
-<ng-particles id="particles" [options]="particlesOptions" [particlesInit]="particlesInit" (particlesLoaded)="particlesLoaded($event)"></ng-particles>
+<ng-particles id="particles" [options]="particlesOptions" [particlesInit]="particlesInit"
+  (particlesLoaded)="particlesLoaded($event)"></ng-particles>
 <div class="box">
-  <h2>Login</h2>
-  <form>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <h2>Login</h2>
     <div class="social-container">
-      <a href="#"><fa-icon [icon]="['fab', 'facebook']"></fa-icon></a>
-      <a href="#"><fa-icon [icon]="['fab', 'google']"></fa-icon></a>
-      <a href="#"><fa-icon [icon]="['fab', 'twitter']"></fa-icon></a>
+      <button class="social-button"><fa-icon [icon]="['fab', 'facebook']"></fa-icon></button>
+      <button class="social-button"><fa-icon [icon]="['fab', 'google']"></fa-icon></button>
+      <button class="social-button"><fa-icon [icon]="['fab', 'twitter']"></fa-icon></button>
     </div>
-    <div class="inputBox">
-      <label for="userEmail">Email</label>
-      <input type="text" name="userEmail" id="userEmail" placeholder="type your email" required>
+    <div class="inputBox" [class.inputbox-focused]="focusedInput === 1">
+      <label [class.label-focused]="focusedInput === 1" for="userEmail">Email</label>
+      <input [class.input-focused]="focusedInput === 1" (focus)="focusedInput = 1" (blur)="focusedInput = null"
+        type="text" id="userEmail" name="userEmail" placeholder="Email">
     </div>
-    <div class="inputBox">
-      <label for="userPassword">Password</label>
-      <input type="password" name="userPassword" id="userPassword" placeholder="type your password" required>
+    <div class="inputBox" [class.inputbox-focused]="focusedInput === 2">
+      <label [class.label-focused]="focusedInput === 2" for="userPassword">Password</label>
+      <input [class.input-focused]="focusedInput === 2" (focus)="focusedInput = 2" (blur)="focusedInput = null"
+        type="password" id="userPassword" name="userPassword" placeholder="Password">
+      <button [class.password-show-focused]="focusedInput === 2" type="button" (click)="showPassword = !showPassword"
+        class="password-show">
+        <fa-icon [icon]="showPassword ? ['fas', 'eye'] : ['fas', 'eye-slash']" aria-hidden="true"></fa-icon>
+      </button>
     </div>
-    <input type="submit" name="" value="Submit" class="submit-button">
+    <button type="submit"></button>
+    <!--<div class="loader">
+      <input (mousedown)="isInputPressed = true" (mouseup)="isInputPressed = false">
+  <label [ngStyle]="{'color': isInputPressed ? 'red' : 'black'}">Etichetta</label>
+      <div class="check">
+        <span class="check-one"></span>
+        <span class="check-two"></span>
+      </div>
+    </div>-->
+    <div class="link-container">
+      <span class="membership">Not a member? </span>
+      <a class="link-lr" href="#" routerLink="/register">Register</a>
+    </div>
   </form>
 </div>
 <!--<div class="login-page">

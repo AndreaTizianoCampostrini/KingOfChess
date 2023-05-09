@@ -1,3 +1,4 @@
+/* Login container */
 .box {
   background-color: rgba(0, 0, 0, 0.8);
   border-radius: 10px;
@@ -10,104 +11,320 @@
   width: 400px;
   transform: translate(-50%, -50%);
 }
-
-a {
-  text-decoration: none;
+/* Title */
+.box h2 {
   color: #fff;
-  font-size: 14px;
-  margin: 15px 0;
+  font-size: 30px;
+  font-weight: 600;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  user-select: none;
 }
 
+/* Form div */
 .social-container {
-	margin: 20px 0;
+  margin: 20px 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
 }
 
-.social-container a {
-  position: relative;
-  display: block;
-  height: 50px;
-	width: 50px;
-  text-align: center;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.8);
+.social-button {
+  background-color: transparent;
+  border: none;
+  color: white;
   border-radius: 50%;
   font-size: 25px;
-  line-height: 53px;
+  height: 25px;
+  width: 25px;
+  position: relative;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   color: #666;
-  transition: .5s;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.8);
+  text-align: center;
+  transition: 0.5s;
 }
 
-.social-container a::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  transition: .5s;
-  transform: scale(.9);
-  z-index: -1;
+.social-button fa-icon {
+  height: 25px;
+  width: 25px;
+  line-height: 25px !important;
+  text-align: center;
+  padding: 0 !important;
 }
-
-.social-container a:hover::before {
-  transform: scale(1.1);
-  box-shadow: 0 0 10px #fff;
-  border: 2px solid #fff;
-}
-
-.social-container a:hover {
-  color: #fff;
-  box-shadow: 0 0 5px #fff;
+.social-button:hover {
+  color: #000;
   text-shadow: 0 0 5px #fff;
 }
 
-.box h2 {
-  padding: 0;
-  margin: 0;
+.social-button:before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  z-index: -1;
+  background: linear-gradient(90deg, #ec008c, #fc6767, #ffcc00);
+  border-radius: inherit;
+  opacity: 0;
+  transition: 0.5s;
+  transform: scale(0.9);
+}
+
+.social-button:hover:before {
+  opacity: 0.6;
+  transform: scale(1.2);
+  box-shadow: 0 0 5px #000;
+}
+.social-button::after {
+  content: "";
+  display: block;
+  position: absolute;
+  border-radius: 4em;
+  left: 0;
+  top:0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: all 0.5s;
+  box-shadow: 0 0 12px 20px #fc6767;
+}
+
+.social-button:active:after {
+  box-shadow: 0 0 0 0 white;
+  position: absolute;
+  border-radius: 4em;
+  left: 0;
+  top:0;
+  opacity: 1;
+  transition: 0s;
+}
+
+/* Link to login or register */
+.link-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.membership {
   color: #fff;
+  font-size: 14px;
   text-align: center;
+  user-select: none !important;
+}
+
+.link-lr {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  transition: 0.35s;
+  padding: 5px;
+}
+
+.link-lr:hover {
+  scale: 1.2;
+  text-shadow: 0px 0px 2px #fff;
+}
+
+/* Links */
+a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 14px;
+}
+
+/* Password show/hide*/
+.password-show {
+  text-align: end;
+  position: absolute;
+  background: transparent;
+  outline: none;
+  display: block;
+  border: none;
+  top: 16px;
+  color: #fff;
+  right: 0px;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  padding: 2px;
+}
+
+.password-show:hover {
+  scale: 1.2;
+  padding: 2px;
+}
+
+.box .inputBox #userPassword {
+  width: 90%;
+}
+
+/* Input Boxes */
+.box .inputBox {
+  position: relative;
+  width: 100%;
+  border-bottom: 1px solid #fff;
+  margin-bottom: 30px;
+  transition: border-image 0.3s ease-in-out;
+}
+
+/* Input Fields */
+.box .inputBox input {
+  background: transparent;
+  border: 0;
+  color: #fff;
+  font-size: 18px;
+  outline: none;
+  padding: 7px 0;
+  width: 100%;
+  margin-top: 10px;
 }
 
 .box .inputBox label {
-  color: #fff;
+  color: transparent;
+  position: absolute;
+  user-select: none;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.3s ease-in-out;
 }
 
-.box .inputBox input {
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid #fff;
-  color: #fff;
-  font-size: 18px;
-  letter-spacing: 2px;
-  margin-bottom: 30px;
-  outline: none;
-  padding: 10px 0;
-  width: 100%;
+.box .inputBox input:focus::placeholder {
+  color: transparent !important;
 }
 
-.box input[type="submit"] {
-  background: #03a9f4;
-  border: none;
-  border-radius: 50px;
-  color: #fff;
+.password-show-focused {
+  font-size: 14px;
+}
+
+.inputbox-focused {
+  border-image: linear-gradient(to right, #22BBEE, #8855CC, #EE2266, #EE7722) !important;
+  border-image-slice: 1 !important;
+  border-width: 3px !important;
+}
+
+.input-focused {
+  font-size: 14px !important;
+}
+
+.label-focused {
+  color: #fff !important;
+  font-size: 14px !important;
+  transform: translateY(-125%) scale(0.8) !important;
+}
+
+.box button[type="submit"] {
+  font-family: "Ubuntu", sans-serif;
+  background-color: #03a9f4;
+  color: white;
+  border-radius: 40px;
+  line-height: 5px;
+  border: 2px solid transparent;
   cursor: pointer;
   font-weight: 600;
   padding: 15px 0px;
   opacity: 0.8;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   outline: none;
-  text-transform: uppercase;
   text-align: center;
   width: 100%;
-  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  transition: all 0.35s ease;
 }
 
-.box input[type="submit"]:hover {
+.box button[type="submit"]:hover {
   opacity: 1;
   box-shadow: 0 0 5px #03a9f4;
-  transform: translate(-2px);
+  background-color: transparent;
+  border: 2px solid #03a9f4;
+  color: #03a9f4;
 }
+
+.box button[type="submit"]:active {
+  letter-spacing: 2px;
+}
+
+.box button[type="submit"]::after {
+  content: "Submit";
+}
+
+/* Submit button */
+.onclick {
+  width: 40px;
+  border-color: #bbbbbb;
+  border-width: 3px;
+  font-size: 0;
+  border-left-color: #1ecd97;
+  animation: rotating 2s 0.25s linear infinite;
+
+  &:after {
+    content: "";
+  }
+  &:hover {
+    color: #1ecd97;
+    background: white;
+  }
+}
+
+.validate {
+  font-size: 13px;
+  color: white;
+  background: #1ecd97;
+  &:after {
+    font-family: "FontAwesome";
+    content: "\f00c";
+  }
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Media Queries */
+@media (max-width: 460px) {
+  .box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    border-radius: 0px;
+    top: 0;
+    left: 0;
+    transform: none;
+  }
+  form {
+    width: 80%;
+  }
+}
+
+@media (max-width: 500px) {
+  * {
+    cursor: auto;
+  }
+  app-cursor {
+    display: none !important;
+  }
+  app-cursor .cursor {
+    display: none !important;
+  }
+}
+/*serve disabilitare il cursore da script*/

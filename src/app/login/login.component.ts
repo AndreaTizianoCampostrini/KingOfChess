@@ -1,6 +1,6 @@
 // login.component.ts
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { particlesOptions } from './particles-config';
 import { Container, Engine, ISourceOptions } from "tsparticles-engine";
@@ -12,10 +12,13 @@ import { loadFull } from "tsparticles";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  focusedInput: number | null = null;
+  showPassword: boolean;
   particlesOptions: ISourceOptions = particlesOptions;
   loginForm: FormGroup;
 
   constructor(private fb: FormBuilder, private authService: AuthService) {
+    this.showPassword = false;
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -49,5 +52,12 @@ export class LoginComponent {
 
   async particlesInit(engine: Engine): Promise<void> {
     await loadFull(engine);
+  }
+
+  ngOnInit(): void {
+    this.loginForm = new FormGroup({
+      email: new FormControl('example@email.com', [Validators.required, Validators.email]),
+      password: new FormControl('P4ssw0rd!', [Validators.required, Validators.minLength(6)]),
+    });
   }
 }

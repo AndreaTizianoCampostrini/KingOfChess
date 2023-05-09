@@ -28,7 +28,7 @@ import {
   FaIconLibrary,
 } from '@fortawesome/angular-fontawesome';
 import { faTwitter, faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
-
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +66,9 @@ export class AppModule {
     library.addIcons(
       faTwitter,
       faFacebook,
-      faGoogle
+      faGoogle,
+      faEyeSlash,
+      faEye
     );
   }
 }
