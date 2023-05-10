@@ -38,16 +38,16 @@
   border: none;
   border-radius: 50%;
   font-size: 25px;
-  height: 50px;  
-  width: 50px;   
+  height: 50px;
+  width: 50px;
   position: relative;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);   
-  transition: all 0.3s ease;   
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
 }
 
 .social-button.facebook:hover {
@@ -74,12 +74,12 @@
 }
 
 .social-button:hover {
-  transform: scale(1.2) translateY(-5px);   
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);  
+  transform: scale(1.2) translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
 .social-button:active {
-  transform: scale(0.95);   
+  transform: scale(0.95);
 }
 
 /* Link to login or register */
@@ -242,23 +242,24 @@ a {
   border-left-color: #1ecd97;
   animation: rotating 2s 0.25s linear infinite;
 
-  &:after {
-    content: "";
-  }
-  &:hover {
-    color: #1ecd97;
-    background: white;
-  }
+}
+.onclick:hover {
+  color: #1ecd97;
+  background: white;
+}
+.onclick:after {
+  content: "";
 }
 
 .validate {
   font-size: 13px;
   color: white;
   background: #1ecd97;
-  &:after {
-    font-family: "FontAwesome";
-    content: "\f00c";
-  }
+}
+
+.validate:after {
+  font-family: "FontAwesome";
+  content: "\f00c";
 }
 
 @keyframes rotating {
