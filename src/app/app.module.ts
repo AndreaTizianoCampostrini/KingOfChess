@@ -3,9 +3,9 @@ import { NgParticlesModule } from "ng-particles";
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './components/register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './components/login/login.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
@@ -18,17 +18,19 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
-import { IntroScreenComponent } from './intro-screen/intro-screen.component';
-import { AppIntroComponent } from './app-intro/app-intro.component';
+import { IntroScreenComponent } from './components/intro-screen/intro-screen.component';
+import { AppIntroComponent } from './components/app-intro/app-intro.component';
 import { CommonModule } from '@angular/common';
-import { CursorComponent } from './cursor/cursor.component';
-import { CursorService } from './cursor.service';
+import { CursorComponent } from './components/cursor/cursor.component';
 import {
   FontAwesomeModule,
   FaIconLibrary,
 } from '@fortawesome/angular-fontawesome';
 import { faTwitter, faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { HomeComponent } from './components/home/home.component';
+import { CursorService } from './services/cursor/cursor.service';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +38,9 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
     LoginComponent,
     IntroScreenComponent,
     AppIntroComponent,
-    CursorComponent
+    CursorComponent,
+    HomeComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 // login.component.ts
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../auth/auth.service';
 import { particlesOptions } from './particles-config';
 import { Container, Engine, ISourceOptions } from "tsparticles-engine";
 import { loadFull } from "tsparticles";

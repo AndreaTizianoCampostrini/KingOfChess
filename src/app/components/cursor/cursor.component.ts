@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, Renderer2, HostListener } from '@angular/core';
-import { CursorService } from '../cursor.service';
+import { CursorService } from 'src/app/services/cursor/cursor.service';
 
 @Component({
   selector: 'app-cursor',
