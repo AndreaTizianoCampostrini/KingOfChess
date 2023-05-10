@@ -4,9 +4,9 @@
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <h2>Login</h2>
     <div class="social-container">
-      <button class="social-button"><fa-icon [icon]="['fab', 'facebook']"></fa-icon></button>
-      <button class="social-button"><fa-icon [icon]="['fab', 'google']"></fa-icon></button>
-      <button class="social-button"><fa-icon [icon]="['fab', 'twitter']"></fa-icon></button>
+      <button class="social-button facebook"><fa-icon [icon]="['fab', 'facebook']"></fa-icon></button>
+      <button class="social-button google"><fa-icon [icon]="['fab', 'google']"></fa-icon></button>
+      <button class="social-button twitter"><fa-icon [icon]="['fab', 'twitter']"></fa-icon></button>
     </div>
     <div class="inputBox" [class.inputbox-focused]="focusedInput === 1">
       <label [class.label-focused]="focusedInput === 1" for="userEmail">Email</label>
