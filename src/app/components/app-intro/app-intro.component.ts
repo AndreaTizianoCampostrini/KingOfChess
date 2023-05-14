@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 import { AppIntroType } from './app-intro-type';
+import { AppIntroService } from 'src/app/services/app-intro/appintro.service';
 
 @Component({
   selector: 'app-app-intro',
@@ -19,10 +20,8 @@ export class AppIntroComponent implements OnInit {
   @Input() animationDuration: number = 0.5;
   @Input() duration: number = 3;
   @Input() animationType: AppIntroType = AppIntroType.SlideLeft;
-  @Output() introExitComplete = new EventEmitter();
-  @Output() introAnimationComplete = new EventEmitter();
 
-  constructor() {
+  constructor(private introService: AppIntroService) {
     this.showIntro = true;
     this.windowWidth = "0px";
     this.windowHeight = "0px";
@@ -62,10 +61,10 @@ export class AppIntroComponent implements OnInit {
       }
 
       this.transition = transitionStyle;
-      this.introAnimationComplete.emit();
+      this.introService.animationComplete$.next();
       setTimeout(() => {
-        this.introExitComplete.emit();
         this.showIntro = false;
+        this.introService.introComplete$.next();
       }, this.animationDuration * 1000);
     }, this.duration * 1000);
   }

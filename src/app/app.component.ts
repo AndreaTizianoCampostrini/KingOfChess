@@ -2,6 +2,8 @@ import { Component, HostBinding, HostListener } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AppIntroType } from './components/app-intro/app-intro-type';
+import { Subscription } from 'rxjs';
+import { AppIntroService } from './services/app-intro/appintro.service';
 
 @Component({
   selector: 'app-root',
@@ -10,12 +12,15 @@ import { AppIntroType } from './components/app-intro/app-intro-type';
 })
 export class AppComponent {
   title = 'KingOfChess';
+  private subscription: Subscription;
   introAnimationComplete: boolean = false;
   introExitComplete: boolean = false;
   animationType = AppIntroType;
   isMobile: boolean;
 
-  constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
+  constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer, private introService: AppIntroService) {
+    this.subscription = new Subscription();
+
     if (window.matchMedia("(pointer:fine)").matches) {
       this.isMobile = false;
     } else {
@@ -28,6 +33,14 @@ export class AppComponent {
     );
   }
   ngOnInit(): void {
+    this.subscription.add(this.introService.animationComplete$.subscribe(() => {
+      this.introAnimationComplete = true;
+    }));
+
+    this.subscription.add(this.introService.introComplete$.subscribe(() => {
+      this.introExitComplete = true;
+    }));
+
     if (window.matchMedia("(pointer:fine)").matches) {
       this.isMobile = false;
     }
@@ -45,5 +58,9 @@ export class AppComponent {
   @HostBinding('style.cursor')
   get cursorStyle() {
     return this.isMobile ? 'default' : 'none !important';
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

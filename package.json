@@ -31,6 +31,7 @@
     "bootstrap": "^5.2.3",
     "gsap": "^3.11.5",
     "ng-particles": "^3.9.3",
+    "ngx-typed-js": "^2.1.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "tsparticles": "^2.9.3",

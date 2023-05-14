@@ -31,6 +31,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { HomeComponent } from './components/home/home.component';
 import { CursorService } from './services/cursor/cursor.service';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { NgxTypedJsModule } from 'ngx-typed-js';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,7 +61,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     AngularFireAuthModule,
     NgParticlesModule,
     CommonModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgxTypedJsModule,
   ],
   providers: [CursorService],
   bootstrap: [AppComponent]

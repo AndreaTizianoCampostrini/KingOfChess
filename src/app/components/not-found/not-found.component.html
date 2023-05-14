@@ -7,12 +7,17 @@
     <a routerLink="/" class="home-button">Return to Home Page</a>
 </div>
 -->
-<div id="notfound">
-  <div class="notfound">
-    <div class="notfound-404">
-      <h3>Oops! Page not found</h3>
-      <h1><span>4</span><span>0</span><span>4</span></h1>
-    </div>
-    <h2>we are sorry, but the page you requested was not found</h2>
+
+<ng-particles id="particles" [options]="particlesOptions" [particlesInit]="particlesInit" (particlesLoaded)="particlesLoaded($event)"></ng-particles>
+<div class="container-404">
+  <div class="error-404">
+    <div class="number" [@openClose]="showError ? 'open' : 'closed'" (@openClose.done)="animationDone($event)">404</div>
+    <ngx-typed-js *ngIf="showMessage1" [startDelay]="500" [typeSpeed]="10" [strings]="['Oops! Something is clearly wrong here...']" [loop]="false" [typeSpeed]="50" (completed)="showMessage2 = true; hideCursor()" [cursorChar]="'|'" [ngClass]="{'typed-cursor-1': !showMessage2, 'typed-cursor-1-finished': showMessage2}">
+      <span class="typing not-found"></span>
+    </ngx-typed-js>
+    <ngx-typed-js *ngIf="showMessage2" [startDelay]="500" [typeSpeed]="10" [strings]="['It looks like you are looking for an invalid chess move!']" [loop]="false" [typeSpeed]="50" (completed)="showReturnButton = true; hideCursor()" [cursorChar]="'|'" [ngClass]="{'typed-cursor-2': !showReturnButton, 'typed-cursor-2-finished': showReturnButton}">
+      <span class="typing message"></span>
+    </ngx-typed-js>
+    <button *ngIf="showReturnButton" class="back-button" routerLink="/">Return to Home Page</button>
   </div>
 </div>
