@@ -8,21 +8,23 @@
       <button class="social-button google"><fa-icon [icon]="['fab', 'google']"></fa-icon></button>
       <button class="social-button twitter"><fa-icon [icon]="['fab', 'twitter']"></fa-icon></button>
     </div>
-    <div class="inputBox" [class.inputbox-focused]="focusedInput === 1">
+    <div class="inputBox" [class.invalid]="loginForm.get('email')?.invalid && !loginForm.get('email')?.pristine" [class.inputbox-focused]="focusedInput === 1">
       <label [class.label-focused]="focusedInput === 1" for="userEmail">Email</label>
       <input [class.input-focused]="focusedInput === 1" (focus)="focusedInput = 1" (blur)="focusedInput = null"
-        type="text" id="userEmail" name="userEmail" placeholder="Email">
+        type="text" id="userEmail" name="userEmail" placeholder="Email" formControlName="email">
     </div>
-    <div class="inputBox" [class.inputbox-focused]="focusedInput === 2">
+    <span class="error-message" *ngIf="loginForm.get('email')?.invalid && !loginForm.get('email')?.pristine">{{ emailErrorMessage }}</span>
+    <div class="inputBox" [class.invalid]="loginForm.get('password')?.invalid && !loginForm.get('password')?.pristine" [class.inputbox-focused]="focusedInput === 2">
       <label [class.label-focused]="focusedInput === 2" for="userPassword">Password</label>
       <input [class.input-focused]="focusedInput === 2" (focus)="focusedInput = 2" (blur)="focusedInput = null"
-        type="password" id="userPassword" name="userPassword" placeholder="Password">
+      type="{{ showPassword ? 'text' : 'password' }}" id="userPassword" name="userPassword" placeholder="Password" formControlName="password">
       <button [class.password-show-focused]="focusedInput === 2" type="button" (click)="showPassword = !showPassword"
         class="password-show">
         <fa-icon [icon]="showPassword ? ['fas', 'eye'] : ['fas', 'eye-slash']" aria-hidden="true"></fa-icon>
       </button>
     </div>
-    <button type="submit"></button>
+    <span class="error-message" *ngIf="loginForm.get('password')?.invalid && !loginForm.get('password')?.pristine">{{ passwordErrorMessage }}</span>
+    <button type="submit" [class.disabled]="!loginForm.valid"></button>
     <div class="link-container">
       <span class="membership">Not a member? </span>
       <a class="link-lr" href="#" routerLink="/register">Register</a>

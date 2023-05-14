@@ -1,36 +1,39 @@
-<!-- register.component.html -->
-<!--<mat-card>
-  <mat-card-header>
-    <mat-card-title>Registrazione</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-      <mat-form-field>
-        <input matInput placeholder="Username" formControlName="username" type="text">
-        <mat-error *ngIf="username?.invalid && username?.touched">
-          Inserisci un nome utente valido
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Email" formControlName="email" type="email">
-        <mat-error *ngIf="email?.invalid && email?.touched">
-          Inserisci un'email valida
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Password" formControlName="password" type="password">
-        <mat-error *ngIf="password?.invalid && password?.touched">
-          Inserisci una password valida
-        </mat-error>
-      </mat-form-field>
-      <button mat-raised-button color="primary" [disabled]="registerForm.invalid" type="submit">
-        Registrati
+<ng-particles id="particles" [options]="particlesOptions" [particlesInit]="particlesInit"
+  (particlesLoaded)="particlesLoaded($event)"></ng-particles>
+<div class="box">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <h2>Register</h2>
+    <div class="social-container">
+      <button class="social-button facebook"><fa-icon [icon]="['fab', 'facebook']"></fa-icon></button>
+      <button class="social-button google"><fa-icon [icon]="['fab', 'google']"></fa-icon></button>
+      <button class="social-button twitter"><fa-icon [icon]="['fab', 'twitter']"></fa-icon></button>
+    </div>
+    <div class="inputBox" [class.invalid]="registerForm.get('email')?.invalid && !registerForm.get('email')?.pristine" [class.inputbox-focused]="focusedInput === 1">
+      <label [class.label-focused]="focusedInput === 1" for="userEmail">Email</label>
+      <input [class.input-focused]="focusedInput === 1" (focus)="focusedInput = 1" (blur)="focusedInput = null"
+        type="text" id="userEmail" name="userEmail" placeholder="Email" formControlName="email">
+    </div>
+    <span class="error-message" *ngIf="registerForm.get('email')?.invalid && !registerForm.get('email')?.pristine">{{ emailErrorMessage }}</span>
+    <div class="inputBox" [class.invalid]="registerForm.get('username')?.invalid && !registerForm.get('username')?.pristine" [class.inputbox-focused]="focusedInput === 3">
+      <label [class.label-focused]="focusedInput === 3" for="userName">Username</label>
+      <input [class.input-focused]="focusedInput === 3" (focus)="focusedInput = 3" (blur)="focusedInput = null"
+      type="text" id="userName" name="userName" placeholder="Username" formControlName="username">
+    </div>
+    <span class="error-message" *ngIf="registerForm.get('username')?.invalid && !registerForm.get('username')?.pristine">{{ usernameErrorMessage }}</span>
+    <div class="inputBox" [class.invalid]="registerForm.get('password')?.invalid && !registerForm.get('password')?.pristine" [class.inputbox-focused]="focusedInput === 2">
+      <label [class.label-focused]="focusedInput === 2" for="userPassword">Password</label>
+      <input [class.input-focused]="focusedInput === 2" (focus)="focusedInput = 2" (blur)="focusedInput = null"
+      type="{{ showPassword ? 'text' : 'password' }}" id="userPassword" name="userPassword" placeholder="Password" formControlName="password">
+      <button [class.password-show-focused]="focusedInput === 2" type="button" (click)="showPassword = !showPassword"
+        class="password-show">
+        <fa-icon [icon]="showPassword ? ['fas', 'eye'] : ['fas', 'eye-slash']" aria-hidden="true"></fa-icon>
       </button>
-    </form>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button routerLink="/login">Hai già un account? Accedi</button>
-  </mat-card-actions>
-</mat-card>
--->
-<ng-particles id="particles" [options]="particlesOptions" [particlesInit]="particlesInit" (particlesLoaded)="particlesLoaded($event)"></ng-particles>
+    </div>
+    <span class="error-message" *ngIf="registerForm.get('password')?.invalid && !registerForm.get('password')?.pristine">{{ passwordErrorMessage }}</span>
+    <button type="submit" [class.disabled]="!registerForm.valid"></button>
+    <div class="link-container">
+      <span class="membership">Already a member? </span>
+      <a class="link-lr" href="#" routerLink="/login">Login</a>
+    </div>
+  </form>
+</div>

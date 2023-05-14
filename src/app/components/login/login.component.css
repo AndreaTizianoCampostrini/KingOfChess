@@ -127,7 +127,7 @@ a {
   outline: none;
   display: block;
   border: none;
-  top: 16px;
+  top: 18px;
   color: #fff;
   right: 0px;
   cursor: pointer;
@@ -150,7 +150,7 @@ a {
   width: 100%;
   border-bottom: 1px solid #fff;
   margin-bottom: 30px;
-  transition: border-image 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 /* Input Fields */
@@ -163,6 +163,23 @@ a {
   padding: 7px 0;
   width: 100%;
   margin-top: 10px;
+}
+
+.box .inputBox input::placeholder {
+  color: #757575;
+}
+
+.box .inputBox.invalid {
+  border-bottom-color: #f44336;
+  margin-bottom: 5px;
+}
+
+.box .inputBox input.ng-invalid::placeholder {
+  color: #f44336;
+}
+
+.box .inputBox input.ng-pristine::placeholder {
+  color: #757575;
 }
 
 .box .inputBox label {
@@ -203,6 +220,7 @@ a {
   font-family: "Ubuntu", sans-serif;
   background-color: #03a9f4;
   color: white;
+  margin-top: 15px;
   border-radius: 40px;
   line-height: 5px;
   border: 2px solid transparent;
@@ -233,7 +251,18 @@ a {
   content: "Submit";
 }
 
+.box button[type="submit"].disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+}
 /* Submit button */
+/*
 .onclick {
   width: 40px;
   border-color: #bbbbbb;
@@ -270,7 +299,7 @@ a {
     transform: rotate(360deg);
   }
 }
-
+*/
 /* Media Queries */
 @media (max-width: 460px) {
   .box {
@@ -289,5 +318,11 @@ a {
   }
   form {
     width: 80%;
+  }
+}
+
+@media (max-width: 300px) {
+  .error-message {
+    font-size: 10px;
   }
 }
