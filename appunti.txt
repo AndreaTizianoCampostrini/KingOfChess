@@ -1,0 +1,60 @@
+Api key: 2BCpjbcPFCxJh0JZnfkQ50wOp
+Api key Secret: wfEqNIx0jRgtTzPoiHCFq73RqqIADaWiXGHISSairsUA6E1aaB
+Access token: 1658153737330872321-bCAXIPhYHAun1oLDpEP6gSnxnVcXOu
+Access token secret: Ne3Lhfb9MuXPl2SV0FLWpaelT1vXiFzXfx6L9UtlpfxDD
+
+
+https://console.firebase.google.com/u/0/project/kingofchess-app/firestore
+
+chatme.it.service@gmail.com
+
+
+Guarda chat gpt e il video per l login e il logout
+documento con id l'email dentro abbiamo->
+username: se null va richiesto all'entrata nel sito appena l'utente fa il login
+Se uno si logga con google dobbiamo assolutamente fare che nella funzione dopo gli chieda l'username
+
+remember me?
+forgot password?
+
+
+setting ->
+lingua
+scacchiera colori pezzi e stile pezzi
+switch to next puzzle (si no oppure chiedi) quando si finisce un puzzle si va automaticamente al successivo
+(numerato nella puzzle list) bisogna salvare i puzzle già svolti
+already done random puzzle se settata su si ti potrebbero capitare anche puzzle già fatti
+volume del sito
+dark mode
+timer mostra o nasconde
+mostra animazioni si no (movimento del pezzo sulla scacchiera) drag & drop ecc..
+tipo di suono quando si cattura o si muove selezioni wood arcade metallo plastica o nessuno
+last move arrow mostrare la ultima mossa?
+last move opponent ==
+
+sezione about che raccounta un po del sito contatti development
+design e crediti
+best chess players
+classified-puzzle-race ti da un puzzle random per ogni puzzle che risolvi correttamente guadagni punti e vai nella leaderboard
+hai solo il numero di mosse scritto nel database
+puzzle-race rispetto alla classificata hai tentativi illimitati ma non ti da punti
+
+leaderboard mostra i top players
+daily puzzle
+random puzzle ti da un puzzle da risolvere randomicamente e di vedere la soluzione
+puzzle list ti da la lista di tutti i puzzle e la possibilità di filtrare
+
+
+se resta tempo tutorial su scacchi
+bot da affrontare con vari livelli di difficoltà
+
+per il chess game facciamo un componente con dentro il componente della scacchiera e ogni volta che viene premuto il pulsante reset o next Game ecc.. si resettà la scacchiera e gli si darà la prossima disposizione, ovviamente si devono cambiare anche altri componenti della pagina.
+Per la pagina principale home una volta che si è loggati-> menù a sinistra con le principali cose (esempio chess.com con la home in alto play, puzzles, ecc..) nella home c'è una descrizione del sito banalmente la about vedi anche qui chess.com
+
+
+Sviluppa un applicazione completa in angular creando tutte le cose necessarie e scrivendo il codice passo dopo passo di un'applicazione dove si risolvono puzzle di scacchi chiamata KingOfChess. L'applicazione deve avere un template e una palette dei colori accattivante e moderna,
+e soprattutto deve essere responsive e deve andare bene per tutti i dispositivi. L'applicazione presenta un login e un register che salvano i dati usando firebase. Poi una volta registrati o loggati i dati devono venire salvati in locale in modo da permettere una autenticazione della sessione valida per 1 ora massimo.
+Senza essere loggati non si può accedere al resto del sito. Una sezione del sito dedicata ai migliori giocatori di scacchi, un elenco di giocatiori con le loro statistiche ecc.. Una sezione about che racconta la storia del sito, dello sviluppo e delle cose che si possono fare sul sito, perché è stato creato, crediti ad alcuni aiutanti ecc..
+Una modalità puzzle race classificata che ti da un puzzle random da risolvere con un numero limitato di mosse e guadagni punti se risolvi il puzzle, la race finisce quando sbagli 1 puzzle o il tempo scade. I migliori punteggi e record vanno salvati in un altra sezione del sito chiamata leaderboard che mostra i giocatori con il punteggio più alto nella puzzle-race classificata.
+Inoltre ce la modalità puzzle race normale che non da punti e hai tentativi  e tempo illimitati per risolvere un puzzle, se non ci riesci però puoi arrenderti con il tasto apposito ( che sarà presente anche nella modalità classificata) oppure chiedere la soluzione. Ad ogni puzzle il sito salverà i tuoi progressi, se esci dalla pagina il sito automaticamente salverà il tempo rimasto e le mosse e lo stato della tua puzzle race.
+Al rientro ti chiederà se vuoi riprendere la puzzle-race. Oltre a questo una sezione per il puzzle del giorno che ti fa risolvere il puzzle giornaliero. Poi una sezione random puzzle che ti da un puzzle random da risolvere e una sezione con la lista di tutti i puzzle e la possibilità di cercare o filtrare i puzzle. Sentiti libero di usare tutto quello che vuoi per la realizzazione di questa applicazione.

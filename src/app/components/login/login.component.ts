@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {
-  FormBuilder,
+  FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
@@ -26,12 +26,12 @@ export class LoginComponent {
   passwordErrorMessage: string = "You must enter a valid password";
   subscription: Subscription | undefined;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private authService: AuthService) {
     this.subscription = new Subscription();
     this.showPassword = false;
-    this.loginForm = this.fb.group({
-      email: [null, [Validators.required, emailValidator()]],
-      password: [null, [Validators.required, passwordValidator()]],
+    this.loginForm = new FormGroup({
+      email: new FormControl(null, [Validators.required, emailValidator()]),
+      password: new FormControl(null, [Validators.required, passwordValidator()]),
     });
   }
 
@@ -50,10 +50,6 @@ export class LoginComponent {
       // Esegui l'autenticazione dell'utente
       console.log('Esegui il login con email e password:', email, password);
     }
-  }
-
-  signInWithGoogle() {
-    this.authService.signInWithGoogle();
   }
 
   /*----- Particles -----*/
@@ -78,6 +74,7 @@ export class LoginComponent {
         this.emailErrorMessage = '';
       }
     });
+
     this.subscription = this.loginForm.get('password')?.valueChanges.subscribe(() => {
       const errors = this.loginForm.get('password')?.errors;
       if (errors) {
@@ -97,6 +94,6 @@ export class LoginComponent {
       } else {
         this.passwordErrorMessage = '';
       }
-    })
+    });
   }
 }
