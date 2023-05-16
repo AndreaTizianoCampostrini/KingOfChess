@@ -261,36 +261,80 @@ a {
   color: red;
   font-size: 12px;
 }
-/* Submit button */
-/*
-.onclick {
-  width: 40px;
-  border-color: #bbbbbb;
-  border-width: 3px;
-  font-size: 0;
-  border-left-color: #1ecd97;
-  animation: rotating 2s 0.25s linear infinite;
 
+/* Overlay */
+.overlay {
+  width: 100%;
+  height: 100vh;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-.onclick:hover {
-  color: #1ecd97;
-  background: white;
+
+.loader {
+  width: 40px;
+  border-radius:40px;
+  height: 40px;
+  background-color: #fff;
+  text-align: center;
+  color: #1ECD97;
+  font-size: 0;
+  border: 3px solid transparent;
 }
-.onclick:after {
-  content: "";
+
+.pending {
+  border-color: #bbbbbb;
+  border-left-color: #1ECD97;
+  animation: rotating 2s 0.25s linear infinite;
+}
+
+
+
+/*$green: #1ECD97;
+$gray: #bbbbbb;*/
+/*
+button {
+  outline:none;
+  height: 40px;
+  text-align: center;
+  width: 130px;
+  border-radius:40px;
+  background: #fff;
+  border: 2px solid $green;
+  color:$green;
+  letter-spacing:1px;
+  text-shadow:0;
+  font:{
+    size:12px;
+    weight:bold;
+  }
+  cursor: pointer;
+  transition: all 0.25s ease;
+  &:hover {
+    color:white;
+    background: $green;
+  }
+  &:active {
+    //letter-spacing: 2px;
+    letter-spacing: 2px ;
+  }
+  &:after {
+    content:"SUBMIT";
+  }
 }
 
 .validate {
-  font-size: 13px;
+  font-size:13px;
   color: white;
-  background: #1ecd97;
+  background: $green;
+  &:after {
+    font-family:'FontAwesome';
+    content:"\f00c";
+  }
 }
-
-.validate:after {
-  font-family: "FontAwesome";
-  content: "\f00c";
-}
-
+*/
 @keyframes rotating {
   from {
     transform: rotate(0deg);
@@ -299,7 +343,6 @@ a {
     transform: rotate(360deg);
   }
 }
-*/
 
 /* Media Queries */
 @media (max-width: 460px) {

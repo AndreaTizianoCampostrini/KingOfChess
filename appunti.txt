@@ -58,3 +58,15 @@ Senza essere loggati non si può accedere al resto del sito. Una sezione del sit
 Una modalità puzzle race classificata che ti da un puzzle random da risolvere con un numero limitato di mosse e guadagni punti se risolvi il puzzle, la race finisce quando sbagli 1 puzzle o il tempo scade. I migliori punteggi e record vanno salvati in un altra sezione del sito chiamata leaderboard che mostra i giocatori con il punteggio più alto nella puzzle-race classificata.
 Inoltre ce la modalità puzzle race normale che non da punti e hai tentativi  e tempo illimitati per risolvere un puzzle, se non ci riesci però puoi arrenderti con il tasto apposito ( che sarà presente anche nella modalità classificata) oppure chiedere la soluzione. Ad ogni puzzle il sito salverà i tuoi progressi, se esci dalla pagina il sito automaticamente salverà il tempo rimasto e le mosse e lo stato della tua puzzle race.
 Al rientro ti chiederà se vuoi riprendere la puzzle-race. Oltre a questo una sezione per il puzzle del giorno che ti fa risolvere il puzzle giornaliero. Poi una sezione random puzzle che ti da un puzzle random da risolvere e una sezione con la lista di tutti i puzzle e la possibilità di cercare o filtrare i puzzle. Sentiti libero di usare tutto quello che vuoi per la realizzazione di questa applicazione.
+
+
+spiegami in modo dettagliato come faresti in angular usando angularfire per un sistema di register con username (va anche esso salvato nel database), 
+email, password e remember me. Con la conferma via email dell'account e un sistema per il login, logout tramite token e rinnovo del token solo se il remember me è attivo. 
+Inoltre la possibilità di usare google, facebook o twitter per il register e il login, la gestione di eventuali errori con utenti già registrati o già presenti nel database in caso del login, 
+tramite per ora un semplice console.log. Poi il mantenimento dell'accesso tramite token. Il forgotPassword, il change Username, il change Email Utilizza le versioni più aggiornate di tutte le librerie inoltre illustra dettagliatamente tutti i passaggi, 
+i comandi e il codice che fai.
+
+Register->Username, Email, Password
+Check se esiste l'username-> try dell'inserimento del email, password.
+se errori -> mostrali
+se non errori-> success schermata

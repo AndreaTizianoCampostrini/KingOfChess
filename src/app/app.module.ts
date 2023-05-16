@@ -10,7 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { getAnalytics } from '@angular/fire/analytics';
+import { FirestoreModule } from '@angular/fire/firestore';
 import { HttpClientModule } from '@angular/common/http';
 import { IntroScreenComponent } from './components/intro-screen/intro-screen.component';
 import { AppIntroComponent } from './components/app-intro/app-intro.component';
@@ -37,7 +37,7 @@ import { environment } from 'src/environments/environment';
     AppIntroComponent,
     CursorComponent,
     HomeComponent,
-    NotFoundComponent
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +48,7 @@ import { environment } from 'src/environments/environment';
     AngularFireModule.initializeApp(environment.firebase),
     provideAuth(() => getAuth()),
     AngularFireAuthModule,
+    FirestoreModule,
     NgParticlesModule,
     CommonModule,
     FontAwesomeModule,

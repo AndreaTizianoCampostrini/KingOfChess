@@ -8,13 +8,16 @@ import { Subscription } from 'rxjs';
 import { emailValidator } from 'src/app/auth/emailValidator';
 import { passwordValidator } from 'src/app/auth/passwordValidator';
 import { usernameValidator } from 'src/app/auth/usernameValidator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
+  providers: [AuthService],
 })
 export class RegisterComponent {
+  submitStatus: string | null = null;
   focusedInput: number | null = null;
   showPassword: boolean;
   particlesOptions: ISourceOptions = particlesOptions;
@@ -24,7 +27,7 @@ export class RegisterComponent {
   usernameErrorMessage: string = 'You must enter a valid username';
   subscription: Subscription | undefined;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
     this.subscription = new Subscription();
     this.showPassword = false;
     this.registerForm = new FormGroup({
@@ -52,28 +55,30 @@ export class RegisterComponent {
     return this.registerForm.get('username');
   }
 
-  onSubmit() {
+  async onSubmit() {
     if (this.registerForm.valid) {
-      console.log(this.registerForm);
       const { email, username, password } = this.registerForm.value;
-      // Esegui l'autenticazione dell'utente
-      console.log(
-        'Esegui la registrazione con email, username e password:',
-        email,
-        username,
-        password
-      );
-      this.authService
-        .register(
-          {
-            email: this.registerForm.value.email,
-            password: this.registerForm.value.password,
-            returnSecureToken: true,
-          }
-        ).subscribe(resData => {
-          console.log(resData);
+      this.submitStatus = "pending";
+      await this.authService.register(email, password, username).then((status) => {
+        //se il register ha avuto successo faccio l'animazione di successo altrimenti di errore
+        if(status == "success") {
+          setTimeout(() => {
+            this.submitStatus = "success";
+            setTimeout(() => {
+              this.submitStatus = null;
+              //reindirizzo alla home page
+              this.router.navigate(['/home']);
+            }, 450);
+          }, 2250);
+        } else if(status == "failed") {
+          setTimeout(() => {
+            this.submitStatus = "failed";
+            setTimeout(() => {
+              this.submitStatus = null;
+            }, 450);
+          }, 2250);
         }
-        );
+      });
     }
   }
 

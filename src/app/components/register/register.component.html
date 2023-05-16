@@ -1,5 +1,10 @@
 <ng-particles id="particles" [options]="particlesOptions" [particlesInit]="particlesInit"
   (particlesLoaded)="particlesLoaded($event)"></ng-particles>
+<div class="overlay">
+  <span [ngClass]="submitStatus" class="loader"></span>
+  <i *ngIf="submitStatus === 'success'" class='fas fa-check'></i>
+  <i class='fas fa-cross'>sas</i>
+</div>
 <div class="box">
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <h2>Register</h2>
