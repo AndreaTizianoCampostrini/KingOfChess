@@ -45,6 +45,8 @@ Thumbs.db
 .firebase
 *-debug.log
 .runtimeconfig.json
+/environments/environment.prod.ts
+/environments/environment.ts
 
 # Command files
 *.bat

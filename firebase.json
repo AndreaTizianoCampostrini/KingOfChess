@@ -1,11 +1,16 @@
 {
   "hosting": {
-    "site": "kingofchess",
-    "public": "docs",
+    "public": "dist/king-of-chess",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
     ]
   }
 }
