@@ -47,7 +47,7 @@ Thumbs.db
 .runtimeconfig.json
 /environments/environment.prod.ts
 /environments/environment.ts
-
+/environments/*
 # Command files
 *.bat
 
