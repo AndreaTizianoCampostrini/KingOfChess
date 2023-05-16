@@ -1,1 +1,11 @@
-{}
+{
+  "hosting": {
+    "site": "kingofchess",
+    "public": "docs",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

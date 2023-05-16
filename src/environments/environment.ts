@@ -1,13 +1,14 @@
 export const environment = {
   firebase: {
-    projectId: 'kingofchess-andrea-campostrini',
-    appId: '1:44038251957:web:d79ca8449d853bb86925fc',
-    databaseURL: 'https://kingofchess-andrea-campostrini-default-rtdb.europe-west1.firebasedatabase.app',
-    storageBucket: 'kingofchess-andrea-campostrini.appspot.com',
-    apiKey: 'AIzaSyDy_NLq2qVVlKaTtpjcLnWUUJhxwbKg-fc',
-    authDomain: 'kingofchess-andrea-campostrini.firebaseapp.com',
-    messagingSenderId: '44038251957',
-    measurementId: 'G-3ZLZGQ69FN',
+    apiKey: 'AIzaSyBld34jAF_uoeKSfolTrYB_lf0Lg3S45lo',
+    authDomain: 'kingofchess-app.firebaseapp.com',
+    databaseURL:
+      'https://kingofchess-app-default-rtdb.europe-west1.firebasedatabase.app',
+    projectId: 'kingofchess-app',
+    storageBucket: 'kingofchess-app.appspot.com',
+    messagingSenderId: '1026951158207',
+    appId: '1:1026951158207:web:3f0b58a62f43e0a5aaa90a',
+    measurementId: 'G-REZ9RRTS49',
   },
   production: false,
 };
