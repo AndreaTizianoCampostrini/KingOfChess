@@ -60,13 +60,15 @@ Inoltre ce la modalità puzzle race normale che non da punti e hai tentativi  e 
 Al rientro ti chiederà se vuoi riprendere la puzzle-race. Oltre a questo una sezione per il puzzle del giorno che ti fa risolvere il puzzle giornaliero. Poi una sezione random puzzle che ti da un puzzle random da risolvere e una sezione con la lista di tutti i puzzle e la possibilità di cercare o filtrare i puzzle. Sentiti libero di usare tutto quello che vuoi per la realizzazione di questa applicazione.
 
 
-spiegami in modo dettagliato come faresti in angular usando angularfire per un sistema di register con username (va anche esso salvato nel database), 
-email, password e remember me. Con la conferma via email dell'account e un sistema per il login, logout tramite token e rinnovo del token solo se il remember me è attivo. 
-Inoltre la possibilità di usare google, facebook o twitter per il register e il login, la gestione di eventuali errori con utenti già registrati o già presenti nel database in caso del login, 
-tramite per ora un semplice console.log. Poi il mantenimento dell'accesso tramite token. Il forgotPassword, il change Username, il change Email Utilizza le versioni più aggiornate di tutte le librerie inoltre illustra dettagliatamente tutti i passaggi, 
+spiegami in modo dettagliato come faresti in angular usando angularfire per un sistema di register con username (va anche esso salvato nel database),
+email, password e remember me. Con la conferma via email dell'account e un sistema per il login, logout tramite token e rinnovo del token solo se il remember me è attivo.
+Inoltre la possibilità di usare google, facebook o twitter per il register e il login, la gestione di eventuali errori con utenti già registrati o già presenti nel database in caso del login,
+tramite per ora un semplice console.log. Poi il mantenimento dell'accesso tramite token. Il forgotPassword, il change Username, il change Email Utilizza le versioni più aggiornate di tutte le librerie inoltre illustra dettagliatamente tutti i passaggi,
 i comandi e il codice che fai.
 
 Register->Username, Email, Password
 Check se esiste l'username-> try dell'inserimento del email, password.
 se errori -> mostrali
 se non errori-> success schermata
+
+@angular/localize per localizzare la location e tradurre il testo
