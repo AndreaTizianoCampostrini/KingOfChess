@@ -1,4 +1,13 @@
 {
+  "targets": {
+    "kingofchess-app": {
+      "hosting": {
+        "KingOfChess": [
+          "kingofchess-app"
+        ]
+      }
+    }
+  },
   "projects": {
     "default": "kingofchess-app"
   }

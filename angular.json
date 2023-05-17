@@ -96,6 +96,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "KingOfChess:build:production",
+            "firebaseProject": "kingofchess-app",
+            "firebaseHostingSite": "kingofchess-app"
+          }
         }
       }
     }

@@ -15,7 +15,8 @@ export class AuthService {
     return this.isLoggedIn;
   }
 
-  constructor(private afAuth: AngularFireAuth, private firestore: Firestore) { }
+  constructor(private afAuth: AngularFireAuth, private firestore: Firestore) {
+  }
 
   async register(email: string, password: string, username: string): Promise<any> {
     const user = await this.checkUserExists(email, username);
@@ -57,7 +58,7 @@ export class AuthService {
       };
     }
   }
-  
+
   async signUpWithGoogle(): Promise<any> {
     this.afAuth.signInWithPopup(new GoogleAuthProvider()).then(value => async () => {
       console.log(value);
@@ -90,7 +91,7 @@ export class AuthService {
     const emailQuery = query(collection(this.firestore, 'users'), where('email', '==', email));
     return (await getDocs(emailQuery)).empty;
   }
-    
+
   async isUsernameUnique(username: string): Promise<boolean> {
     const usernameQuery = query(collection(this.firestore, 'users'), where('username', '==', username));
     return (await getDocs(usernameQuery)).empty;

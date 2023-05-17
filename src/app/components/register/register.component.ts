@@ -28,6 +28,7 @@ export class RegisterComponent {
   subscription: Subscription | undefined;
 
   constructor(private authService: AuthService, private router: Router) {
+    console.log("sos")
     this.subscription = new Subscription();
     this.showPassword = false;
     this.registerForm = new FormGroup({

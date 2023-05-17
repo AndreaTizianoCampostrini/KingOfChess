@@ -1,13 +1,13 @@
 export const environment = {
-  production: false,
+  production: true,
   firebase: {
-    apiKey: "AIzaSyDQsqhtL3hkXlUyajVETNJFXry8BiElZYM",
-    authDomain: "kingofchess-test.firebaseapp.com",
-    databaseURL: "https://kingofchess-test-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "kingofchess-test",
-    storageBucket: "kingofchess-test.appspot.com",
-    messagingSenderId: "504847439540",
-    appId: "1:504847439540:web:37316c564134b9cb72a9e1",
-    measurementId: "G-PJP5842LCS"
+    projectId: 'kingofchess-app',
+    appId: '1:1026951158207:web:565e07b8cfddef20aaa90a',
+    databaseURL: 'https://kingofchess-app-default-rtdb.europe-west1.firebasedatabase.app',
+    storageBucket: 'kingofchess-app.appspot.com',
+    apiKey: 'AIzaSyBld34jAF_uoeKSfolTrYB_lf0Lg3S45lo',
+    authDomain: 'kingofchess-app.firebaseapp.com',
+    messagingSenderId: '1026951158207',
+    measurementId: 'G-Q2L3PTPNC3',
   }
 };
