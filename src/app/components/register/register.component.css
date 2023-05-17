@@ -266,7 +266,12 @@ a {
 .overlay {
   width: 100%;
   height: 100vh;
-  z-index: 999;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.5);
+  z-index: 9999;
+  pointer-events: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -277,20 +282,52 @@ a {
   width: 40px;
   border-radius:40px;
   height: 40px;
-  background-color: #fff;
+  background-color: transparent;
   text-align: center;
-  color: #1ECD97;
+  font-weight: bold;
+  color: transparent;
   font-size: 0;
-  border: 3px solid transparent;
+  border: 5px solid transparent;
+  transition: all 0.35s ease;
 }
 
 .pending {
   border-color: #bbbbbb;
   border-left-color: #1ECD97;
   animation: rotating 2s 0.25s linear infinite;
+  transition: all 0.35s ease;
 }
 
+.success {
+  scale: 1.5;
+  color: #1ECD97;
+  font-size: 20px;
+  border: 5px solid #1ECD97;
+}
 
+.failed {
+  scale: 1.5;
+  color: #f44336;
+  font-size: 20px;
+  border: 5px solid #f44336;
+}
+
+.message-loader {
+  font-size: 0px;
+  margin-top: 15px;
+  text-align: center;
+  transition: all 0.35s ease;
+}
+
+.message-loader-success {
+  color: #1ECD97;
+  font-size: 14px;
+}
+
+.message-loader-failed {
+  color: #f44336;
+  font-size: 14px;
+}
 
 /*$green: #1ECD97;
 $gray: #bbbbbb;*/

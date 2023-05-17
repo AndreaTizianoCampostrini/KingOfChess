@@ -28,7 +28,6 @@ export class RegisterComponent {
   subscription: Subscription | undefined;
 
   constructor(private authService: AuthService, private router: Router) {
-    console.log("sos")
     this.subscription = new Subscription();
     this.showPassword = false;
     this.registerForm = new FormGroup({
@@ -62,21 +61,23 @@ export class RegisterComponent {
       this.submitStatus = "pending";
       await this.authService.register(email, password, username).then((status) => {
         //se il register ha avuto successo faccio l'animazione di successo altrimenti di errore
-        if(status == "success") {
+        console.log(status);
+        if(status.status == "success") {
           setTimeout(() => {
             this.submitStatus = "success";
             setTimeout(() => {
               this.submitStatus = null;
               //reindirizzo alla home page
               this.router.navigate(['/home']);
-            }, 450);
+            }, 1500);
           }, 2250);
-        } else if(status == "failed") {
+        } else if(status.status == "failed") {
+          //settiamo gli errori negli input
           setTimeout(() => {
             this.submitStatus = "failed";
             setTimeout(() => {
               this.submitStatus = null;
-            }, 450);
+            }, 1500);
           }, 2250);
         }
       });
