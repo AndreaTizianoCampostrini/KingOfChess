@@ -15,6 +15,7 @@ import { IntroScreenComponent } from './components/intro-screen/intro-screen.com
 import { AppIntroComponent } from './components/app-intro/app-intro.component';
 import { CommonModule } from '@angular/common';
 import { CursorComponent } from './components/cursor/cursor.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   FontAwesomeModule,
   FaIconLibrary,
@@ -42,6 +43,7 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,

@@ -22,14 +22,19 @@ export class RegisterComponent {
   showPassword: boolean;
   particlesOptions: ISourceOptions = particlesOptions;
   registerForm: FormGroup;
+  usernameForm: FormGroup;
   emailErrorMessage: string = 'You must enter a valid email';
   passwordErrorMessage: string = 'You must enter a valid password';
   usernameErrorMessage: string = 'You must enter a valid username';
   subscription: Subscription | undefined;
+  overlayError: boolean = false;
+  overlayUsername: boolean = false;
+  errorMessage: string;
 
   constructor(private authService: AuthService, private router: Router) {
     this.subscription = new Subscription();
     this.showPassword = false;
+    this.errorMessage = '';
     this.registerForm = new FormGroup({
       email: new FormControl(null, [Validators.required, emailValidator()]),
       username: new FormControl(null, [
@@ -41,48 +46,134 @@ export class RegisterComponent {
         passwordValidator(),
       ]),
     });
-  }
-
-  get email() {
-    return this.registerForm.get('email');
-  }
-
-  get password() {
-    return this.registerForm.get('password');
-  }
-
-  get username() {
-    return this.registerForm.get('username');
+    this.usernameForm = new FormGroup({
+      username: new FormControl(null, [
+        Validators.required,
+        usernameValidator(),
+      ]),
+    });
   }
 
   async onSubmit() {
     if (this.registerForm.valid) {
       const { email, username, password } = this.registerForm.value;
-      this.submitStatus = "pending";
-      await this.authService.register(email, password, username).then((status) => {
+      this.submitStatus = 'pending';
+      await this.authService
+        .register(email, password, username)
+        .then((status) => {
+          //se il register ha avuto successo faccio l'animazione di successo altrimenti di errore
+          console.log(status);
+          if (status.status == 'success') {
+            setTimeout(() => {
+              this.submitStatus = 'success';
+              setTimeout(() => {
+                this.submitStatus = null;
+                this.router.navigate(['/home']);
+                console.log("reg ");
+                console.log(this.authService.isLoggedIn$)
+              }, 1500);
+            }, 2250);
+          } else if (status.status == 'failed') {
+            setTimeout(() => {
+              this.submitStatus = 'failed';
+              setTimeout(() => {
+                this.submitStatus = null;
+                if (status.errors.email == true) {
+                  this.registerForm
+                    .get('email')
+                    ?.setErrors({ emailExists: true });
+                  this.emailErrorMessage = 'Email already exists';
+                }
+                if (status.errors.username == true) {
+                  this.registerForm
+                    .get('username')
+                    ?.setErrors({ usernameExists: true });
+                  this.usernameErrorMessage = 'Username already exists';
+                }
+                if (
+                  status.errors.email == false &&
+                  status.errors.username == false
+                ) {
+                  this.errorMessage =
+                    'An unknown error has occurred. Please try to login or use a different email.';
+                  this.overlayError = true;
+                }
+              }, 1500);
+            }, 2250);
+          }
+        });
+    }
+  }
+
+  async onUsernameFormSubmit() {
+    if (this.usernameForm.valid) {
+      const { username } = this.usernameForm.value;
+      this.submitStatus = 'pending';
+      await this.authService.completeRegister(username).then((status) => {
         //se il register ha avuto successo faccio l'animazione di successo altrimenti di errore
         console.log(status);
-        if(status.status == "success") {
+        if (status.status == 'success') {
           setTimeout(() => {
-            this.submitStatus = "success";
+            this.submitStatus = 'success';
             setTimeout(() => {
               this.submitStatus = null;
-              //reindirizzo alla home page
+              this.overlayUsername = false;
               this.router.navigate(['/home']);
             }, 1500);
           }, 2250);
-        } else if(status.status == "failed") {
-          //settiamo gli errori negli input
+        } else if (status.status == 'failed') {
           setTimeout(() => {
-            this.submitStatus = "failed";
+            this.submitStatus = 'failed';
             setTimeout(() => {
               this.submitStatus = null;
+              if (status.errors.username == true) {
+                this.usernameForm
+                  .get('username')
+                  ?.setErrors({ usernameExists: true });
+                this.usernameErrorMessage = 'Username already exists';
+              } else {
+                this.errorMessage =
+                  'An unknown error has occurred. Please try to login or use a different email.';
+                this.overlayError = true;
+              }
             }, 1500);
           }, 2250);
         }
       });
     }
   }
+
+  async googleRegister() {
+    this.submitStatus = 'pending';
+    await this.authService.signUpWithGoogle().then((status) => {
+      //se il register ha avuto successo faccio l'animazione di successo altrimenti di errore
+      console.log(status);
+      if (status.status == 'success') {
+        setTimeout(() => {
+          this.submitStatus = 'success';
+          setTimeout(async () => {
+            this.submitStatus = null;
+            if (await this.authService.emailExists(status.data.email)) {
+              this.router.navigate(['/home']);
+            } else {
+              this.overlayUsername = true;
+            }
+          }, 1500);
+        }, 2250);
+      } else if (status.status == 'failed') {
+        setTimeout(() => {
+          this.submitStatus = 'failed';
+          setTimeout(() => {
+            this.submitStatus = null;
+          }, 1500);
+        }, 2250);
+      }
+    });
+  }
+
+  async facebookRegister() {}
+
+  async twitterRegister() {}
 
   /*----- Particles -----*/
   particlesLoaded(container: Container): void {
@@ -156,6 +247,28 @@ export class RegisterComponent {
           }
         } else {
           this.passwordErrorMessage = '';
+        }
+      });
+
+    this.subscription = this.usernameForm
+      .get('username')
+      ?.valueChanges.subscribe(() => {
+        const errors = this.usernameForm.get('username')?.errors;
+        if (errors) {
+          if (errors['required']) {
+            this.usernameErrorMessage = 'This field is required.';
+          } else if (errors['lengthTooShort']) {
+            this.usernameErrorMessage =
+              'Username must be at least 1 character long.';
+          } else if (errors['lengthTooLong']) {
+            this.usernameErrorMessage =
+              'Username must be at most 20 characters long.';
+          } else if (errors['letterInvalid']) {
+            this.usernameErrorMessage =
+              'Username must contain at least one letter.';
+          }
+        } else {
+          this.usernameErrorMessage = '';
         }
       });
   }

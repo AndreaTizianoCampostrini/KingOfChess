@@ -1,16 +1,48 @@
 <ng-particles id="particles" [options]="particlesOptions" [particlesInit]="particlesInit"
   (particlesLoaded)="particlesLoaded($event)"></ng-particles>
 <div *ngIf="submitStatus != null" class="overlay">
-  <span [ngClass]="submitStatus" class="loader"><p *ngIf="submitStatus == 'success'" class="fas fa-check"></p><p *ngIf="submitStatus == 'failed'" class="fas fa-x"></p></span>
-  <p *ngIf="submitStatus == 'success' || submitStatus == 'failed'" class="message-loader" [ngClass]="submitStatus == 'success' ? 'message-loader-success' : 'message-loader-failed'">Registration {{submitStatus}}</p>
+  <span [ngClass]="submitStatus" class="loader">
+    <p *ngIf="submitStatus == 'success'" class="fas fa-check"></p>
+    <p *ngIf="submitStatus == 'failed'" class="fas fa-x"></p>
+  </span>
+  <p *ngIf="submitStatus == 'success' || submitStatus == 'failed'" class="message-loader"
+    [ngClass]="submitStatus == 'success' ? 'message-loader-success' : 'message-loader-failed'">Registration
+    {{submitStatus}}</p>
+</div>
+<div *ngIf="overlayError == true" class="overlay">
+  <div class="overlay-container">
+    <p>{{errorMessage}}</p>
+    <button class="error-button" (click)="overlayError = false; errorMessage = ''">OK</button>
+  </div>
+</div>
+<div *ngIf="overlayUsername == true" class="overlay overlay-username-form">
+  <div class="overlay-container">
+    <form [formGroup]="usernameForm" (ngSubmit)="onUsernameFormSubmit()" class="username-form">
+      <div class="inputBox-username-form"
+        [class.invalid]="usernameForm.get('username')?.invalid && !usernameForm.get('username')?.pristine"
+        [class.inputbox-focused]="focusedInput === 4">
+        <h2>Insert an username to complete the registration</h2>
+        <label [class.label-username-form-focused]="focusedInput === 4" for="userName">Username</label>
+        <input [class.input-focused]="focusedInput === 4" (focus)="focusedInput = 4" (blur)="focusedInput = null"
+          type="text" id="userName" name="userName" placeholder="Username" formControlName="username">
+      </div>
+      <span class="error-message"
+        *ngIf="usernameForm.get('username')?.invalid && !usernameForm.get('username')?.pristine">{{ usernameErrorMessage
+        }}</span>
+      <button type="submit" class="submit-button" [class.disabled]="!usernameForm.valid"></button>
+    </form>
+  </div>
 </div>
 <div class="box">
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <h2>Register</h2>
     <div class="social-container">
-      <button class="social-button facebook"><fa-icon [icon]="['fab', 'facebook']"></fa-icon></button>
-      <button class="social-button google"><fa-icon [icon]="['fab', 'google']"></fa-icon></button>
-      <button class="social-button twitter"><fa-icon [icon]="['fab', 'twitter']"></fa-icon></button>
+      <button class="social-button facebook" type="button" (click)="facebookRegister()"><fa-icon
+          [icon]="['fab', 'facebook']"></fa-icon></button>
+      <button class="social-button google" type="button" (click)="googleRegister()"><fa-icon
+          [icon]="['fab', 'google']"></fa-icon></button>
+      <button class="social-button twitter" type="button" (click)="twitterRegister()"><fa-icon
+          [icon]="['fab', 'twitter']"></fa-icon></button>
     </div>
     <div class="inputBox" [class.invalid]="registerForm.get('email')?.invalid && !registerForm.get('email')?.pristine"
       [class.inputbox-focused]="focusedInput === 1">
@@ -45,7 +77,7 @@
     <span class="error-message"
       *ngIf="registerForm.get('password')?.invalid && !registerForm.get('password')?.pristine">{{ passwordErrorMessage
       }}</span>
-    <button type="submit" [class.disabled]="!registerForm.valid"></button>
+    <button type="submit" class="submit-button" [class.disabled]="!registerForm.valid"></button>
     <div class="link-container">
       <span class="membership">Already a member? </span>
       <a class="link-lr" href="#" routerLink="/login">Login</a>
