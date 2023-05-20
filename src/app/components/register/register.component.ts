@@ -9,6 +9,7 @@ import { emailValidator } from 'src/app/auth/emailValidator';
 import { passwordValidator } from 'src/app/auth/passwordValidator';
 import { usernameValidator } from 'src/app/auth/usernameValidator';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-register',
@@ -31,7 +32,7 @@ export class RegisterComponent {
   overlayUsername: boolean = false;
   errorMessage: string;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router, private afAuth: AngularFireAuth) {
     this.subscription = new Subscription();
     this.showPassword = false;
     this.errorMessage = '';
@@ -315,6 +316,18 @@ export class RegisterComponent {
           }
         } else {
           this.usernameErrorMessage = '';
+        }
+      });
+
+      this.afAuth.currentUser.then((user) => {
+        //se l'utente è autenticato
+        if (user) {
+          this.authService.emailExists(user.email ?? '').then((exists) => {
+            if (!exists) {
+              //se non esiste, l'utente non ha inserito l'usernmae, poichè si è loggato con un servizio
+              this.overlayUsername = true;
+            }
+          });
         }
       });
   }

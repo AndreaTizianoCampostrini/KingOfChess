@@ -8,6 +8,7 @@ import {
   setDoc,
   doc,
   getDoc,
+  DocumentData,
 } from 'firebase/firestore';
 import {
   getAuth,
@@ -312,5 +313,16 @@ export class AuthService {
         message: 'Something went wrong.',
       };
     }
+  }
+
+  getFirestoreUser(email: string): Promise<any> {
+    const userQuery = query(this.database, where('email', '==', email));
+    return getDocs(userQuery).then((results) => {
+      if (results.empty) {
+        return {};
+      } else {
+        return results.docs[0].data();
+      }
+    });
   }
 }
