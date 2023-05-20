@@ -69,8 +69,6 @@ export class RegisterComponent {
               setTimeout(() => {
                 this.submitStatus = null;
                 this.router.navigate(['/home']);
-                console.log("reg ");
-                console.log(this.authService.isLoggedIn$)
               }, 1500);
             }, 2250);
           } else if (status.status == 'failed') {
@@ -111,7 +109,6 @@ export class RegisterComponent {
       this.submitStatus = 'pending';
       await this.authService.completeRegister(username).then((status) => {
         //se il register ha avuto successo faccio l'animazione di successo altrimenti di errore
-        console.log(status);
         if (status.status == 'success') {
           setTimeout(() => {
             this.submitStatus = 'success';
@@ -147,7 +144,6 @@ export class RegisterComponent {
     this.submitStatus = 'pending';
     await this.authService.signUpWithGoogle().then((status) => {
       //se il register ha avuto successo faccio l'animazione di successo altrimenti di errore
-      console.log(status);
       if (status.status == 'success') {
         setTimeout(() => {
           this.submitStatus = 'success';
@@ -171,9 +167,59 @@ export class RegisterComponent {
     });
   }
 
-  async facebookRegister() {}
+  async facebookRegister() {
+    this.submitStatus = 'pending';
+    await this.authService.signUpWithFacebook().then((status) => {
+      //se il register ha avuto successo faccio l'animazione di successo altrimenti di errore
+      if (status.status == 'success') {
+        setTimeout(() => {
+          this.submitStatus = 'success';
+          setTimeout(async () => {
+            this.submitStatus = null;
+            if (await this.authService.emailExists(status.data.email)) {
+              this.router.navigate(['/home']);
+            } else {
+              this.overlayUsername = true;
+            }
+          }, 1500);
+        }, 2250);
+      } else if (status.status == 'failed') {
+        setTimeout(() => {
+          this.submitStatus = 'failed';
+          setTimeout(() => {
+            this.submitStatus = null;
+          }, 1500);
+        }, 2250);
+      }
+    });
+  }
 
-  async twitterRegister() {}
+  async twitterRegister() {
+    this.submitStatus = 'pending';
+    await this.authService.signUpWithTwitter().then((status) => {
+      //se il register ha avuto successo faccio l'animazione di successo altrimenti di errore
+      if (status.status == 'success') {
+        setTimeout(() => {
+          this.submitStatus = 'success';
+          setTimeout(async () => {
+            this.submitStatus = null;
+            if (await this.authService.emailExists(status.data.email)) {
+              this.router.navigate(['/home']);
+            } else {
+              this.overlayUsername = true;
+            }
+          }, 1500);
+        }, 2250);
+      } else if (status.status == 'failed') {
+        setTimeout(() => {
+          this.submitStatus = 'failed';
+          setTimeout(() => {
+            this.submitStatus = null;
+          }, 1500);
+        }, 2250);
+      }
+    });
+  }
 
   /*----- Particles -----*/
   particlesLoaded(container: Container): void {

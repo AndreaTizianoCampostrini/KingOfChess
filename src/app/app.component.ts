@@ -39,21 +39,6 @@ export class AppComponent {
         this.introExitComplete = true;
       })
     );
-    const json = localStorage.getItem('user');
-    if (json != null) {
-      const user = JSON.parse(json);
-      //try del login o del renew
-      this.authService.createUser(
-        user.email,
-        user.uid,
-        user.token,
-        user.refreshToken,
-        user.expirationTime
-      );
-      this.authService.setLoggedIn(true);
-      console.log('qua ');
-      console.log(this.authService.isLoggedIn$)
-    }
   }
 
   @HostListener('window:resize', ['$event'])
