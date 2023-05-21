@@ -29,6 +29,7 @@ import { NgxTypedJsModule } from 'ngx-typed-js';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
+import { ChooseUsernameComponent } from './components/choose-username/choose-username.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
     CursorComponent,
     HomeComponent,
     NotFoundComponent,
+    ChooseUsernameComponent,
   ],
   imports: [
     BrowserModule,

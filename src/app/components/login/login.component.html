@@ -15,24 +15,6 @@
     <button class="error-button" (click)="overlayError = false; errorMessage = ''">OK</button>
   </div>
 </div>
-<div *ngIf="overlayUsername == true" class="overlay overlay-username-form">
-  <div class="overlay-container">
-    <form [formGroup]="usernameForm" (ngSubmit)="onUsernameFormSubmit()" class="username-form">
-      <div class="inputBox-username-form"
-        [class.invalid]="usernameForm.get('username')?.invalid && !usernameForm.get('username')?.pristine"
-        [class.inputbox-focused]="focusedInput === 4">
-        <h2>Insert an username to complete the registration</h2>
-        <label [class.label-username-form-focused]="focusedInput === 4" for="userName">Username</label>
-        <input [class.input-focused]="focusedInput === 4" (focus)="focusedInput = 4" (blur)="focusedInput = null"
-          type="text" id="userName" name="userName" placeholder="Username" formControlName="username">
-      </div>
-      <span class="error-message"
-        *ngIf="usernameForm.get('username')?.invalid && !usernameForm.get('username')?.pristine">{{ usernameErrorMessage
-        }}</span>
-      <button type="submit" class="submit-button" [class.disabled]="!usernameForm.valid"></button>
-    </form>
-  </div>
-</div>
 <div class="box">
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <h2>Login</h2>

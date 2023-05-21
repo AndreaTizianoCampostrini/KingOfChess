@@ -48,9 +48,15 @@ export class AppComponent {
       if (user) {// Se l'utente è loggato
         // Controlla se ha un username nel Firestore
         const data = await this.authService.getFirestoreUser(user.email ?? '');
-        if (!data) {
+        if (!data || !data['username']) {
           //se non esiste, l'utente non ha inserito l'usernmae, poichè si è loggato con un servizio
-          this.router.navigate(['/register']);
+          this.authService.createUser(
+            user.email ?? '',
+            '',
+            user.uid,
+            ''
+          );
+          this.router.navigate(['/choose-username']);
         } else {
           //ricrea l'utente con i dati del firestore
           this.authService.createUser(

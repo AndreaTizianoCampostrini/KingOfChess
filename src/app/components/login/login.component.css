@@ -278,10 +278,6 @@ a {
   align-items: center;
 }
 
-.overlay-username-form {
-  z-index: 1000 !important;
-}
-
 .overlay-container {
   background-color: #fff;
   border-radius: 40px;
@@ -372,83 +368,6 @@ a {
   font-size: 14px;
 }
 
-
-.username-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 80%;
-}
-
-.username-form h2 {
-  color: #000;
-  font-size: 20px;
-  font-weight: 600;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  user-select: none;
-  margin-bottom: 40px;
-}
-
-/* Input Boxes */
-.inputBox-username-form {
-  position: relative;
-  width: 100%;
-  border-bottom: 1px solid #000;
-  margin-bottom: 30px;
-  transition: all 0.3s ease-in-out;
-}
-
-/* Input Fields */
-.inputBox-username-form input {
-  background: transparent;
-  border: 0;
-  color: #000;
-  font-size: 18px;
-  outline: none;
-  padding: 7px 0;
-  width: 100%;
-  margin-top: 10px;
-}
-
-.inputBox-username-form input::placeholder {
-  color: #757575;
-}
-
-.inputBox-username-form.invalid {
-  border-bottom-color: #f44336;
-  margin-bottom: 5px;
-}
-
-.inputBox-username-form input.ng-invalid::placeholder {
-  color: #f44336;
-}
-
-.inputBox-username-form input.ng-pristine::placeholder {
-  color: #757575;
-}
-
-.inputBox-username-form label {
-  color: transparent;
-  position: absolute;
-  user-select: none;
-  top: 50%;
-  transition: all 0.3s ease-in-out;
-}
-
-.inputBox-username-form input:focus::placeholder {
-  color: transparent !important;
-}
-
-.label-username-form-focused {
-  color: #000 !important;
-  font-size: 14px !important;
-  transform: translateY(-7%) scale(0.8) !important;
-  margin-bottom: 5px;
-}
-
 @keyframes rotating {
   from {
     transform: rotate(0deg);
@@ -480,17 +399,11 @@ a {
   .overlay-container {
     width: 80%;
   }
-  .username-form h2 {
-    font-size: 16px;
-  }
 }
 
 @media (max-width: 370px) {
   .overlay-container {
     width: 100%;
-  }
-  .username-form h2 {
-    font-size: 14px;
   }
 }
 

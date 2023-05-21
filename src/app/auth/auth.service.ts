@@ -52,38 +52,6 @@ export class AuthService {
         email,
         password
       );
-        /*
-                const userInfo = await this.getFirestoreUser(email);
-        if (!userInfo) {
-          //se non esiste, l'utente non ha inserito l'usernmae, poichè si è loggato con un servizio
-          return {
-            status: 'failed',
-            errors: {
-              email: false,
-              password: false,
-            },
-            message: 'Something went wrong.',
-          }
-        } else {
-          //ricrea l'utente con i dati del firestore
-          this.authService.createUser(
-            data['email'],
-            data['username'],
-            data['uid'],
-            data['password']
-          );
-        }
-
-        if (userInfo.status === 'success') {
-          this.loginUser(
-            userInfo.data.email,
-            userInfo.data.username,
-            userInfo.data.uid,
-            password
-          );
-        }
-
-        return userInfo;*/
       if (data.user) {
         // Utente trovato e autenticato correttamente
         return {
@@ -463,7 +431,7 @@ export class AuthService {
     password: string | undefined
   ): Promise<any> {
     try {
-      await setDoc(doc(this.database, uid), {
+      await setDoc(doc(collection(this.firestore, 'users'), uid), {
         email: email,
         username: username,
         uid: uid,

@@ -10,6 +10,8 @@ import {
   redirectUnauthorizedTo,
   redirectLoggedInTo,
 } from '@angular/fire/auth-guard';
+import { ChooseUsernameComponent } from './components/choose-username/choose-username.component';
+import { ChooseUsernameAuthGuard } from './auth/choose-username-auth.guard';
 
 // Se l'utente non è loggato, reindirizzalo alla pagina di login
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
@@ -48,6 +50,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
+  {
+    path: 'choose-username',
+    component: ChooseUsernameComponent,
+    canActivate: [ChooseUsernameAuthGuard],
+  },
   { path: '404', component: NotFoundComponent },
   { path: '**', redirectTo: '/404' },
 ];
@@ -56,5 +63,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-
 export class AppRoutingModule {}

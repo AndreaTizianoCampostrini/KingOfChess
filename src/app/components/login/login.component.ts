@@ -7,7 +7,6 @@ import { loadFull } from 'tsparticles';
 import { Subscription } from 'rxjs';
 import { emailValidator } from 'src/app/auth/emailValidator';
 import { passwordValidator } from 'src/app/auth/passwordValidator';
-import { usernameValidator } from 'src/app/auth/usernameValidator';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 
@@ -22,16 +21,17 @@ export class LoginComponent {
   showPassword: boolean;
   particlesOptions: ISourceOptions = particlesOptions;
   loginForm: FormGroup;
-  usernameForm: FormGroup;
   emailErrorMessage: string = 'You must enter a valid email';
   passwordErrorMessage: string = 'You must enter a valid password';
   usernameErrorMessage: string = 'You must enter a valid username';
   subscription: Subscription | undefined;
   overlayError: boolean = false;
-  overlayUsername: boolean = false;
   errorMessage: string;
 
-  constructor(private authService: AuthService, private router: Router, private afAuth: AngularFireAuth) {
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.subscription = new Subscription();
     this.showPassword = false;
     this.errorMessage = '';
@@ -42,78 +42,19 @@ export class LoginComponent {
         passwordValidator(),
       ]),
     });
-    this.usernameForm = new FormGroup({
-      username: new FormControl(null, [
-        Validators.required,
-        usernameValidator(),
-      ]),
-    });
   }
 
   async onSubmit() {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
       this.submitStatus = 'pending';
-      await this.authService
-        .login(email, password)
-        .then((status) => {
-          //se il login ha avuto successo faccio l'animazione di successo altrimenti di errore
-          if (status.status == 'success') {
-            setTimeout(() => {
-              this.submitStatus = 'success';
-              setTimeout(async () => {
-                this.submitStatus = null;
-                if (await this.authService.emailExists(status.data.email)) {
-                  this.router.navigate(['/home']);
-                } else {
-                  this.overlayUsername = true;
-                }
-              }, 1500);
-            }, 2250);
-          } else if (status.status == 'failed') {
-            setTimeout(() => {
-              this.submitStatus = 'failed';
-              setTimeout(() => {
-                this.submitStatus = null;
-                if (status.errors.email == true) {
-                  this.loginForm
-                    .get('email')
-                    ?.setErrors({ emailExists: true });
-                  this.emailErrorMessage = 'Email doesn\'t exists';
-                }
-                if (status.errors.password == true) {
-                  this.loginForm
-                    .get('password')
-                    ?.setErrors({ passwordIncorrect: true });
-                  this.passwordErrorMessage = 'Password is incorrect';
-                }
-                if (
-                  status.errors.email == false &&
-                  status.errors.password == false
-                ) {
-                  this.errorMessage =
-                    'An unknown error has occurred. Please try to login or use a different email.';
-                  this.overlayError = true;
-                }
-              }, 1500);
-            }, 2250);
-          }
-        });
-    }
-  }
-
-  async onUsernameFormSubmit() {
-    if (this.usernameForm.valid) {
-      const { username } = this.usernameForm.value;
-      this.submitStatus = 'pending';
-      await this.authService.completeRegister(username).then((status) => {
-        //se il register ha avuto successo faccio l'animazione di successo altrimenti di errore
+      await this.authService.login(email, password).then((status) => {
+        //se il login ha avuto successo faccio l'animazione di successo altrimenti di errore
         if (status.status == 'success') {
           setTimeout(() => {
             this.submitStatus = 'success';
-            setTimeout(() => {
+            setTimeout(async () => {
               this.submitStatus = null;
-              this.overlayUsername = false;
               this.router.navigate(['/home']);
             }, 1500);
           }, 2250);
@@ -122,12 +63,20 @@ export class LoginComponent {
             this.submitStatus = 'failed';
             setTimeout(() => {
               this.submitStatus = null;
-              if (status.errors.username == true) {
-                this.usernameForm
-                  .get('username')
-                  ?.setErrors({ usernameExists: true });
-                this.usernameErrorMessage = 'Username already exists';
-              } else {
+              if (status.errors.email == true) {
+                this.loginForm.get('email')?.setErrors({ emailExists: true });
+                this.emailErrorMessage = "Email doesn't exists";
+              }
+              if (status.errors.password == true) {
+                this.loginForm
+                  .get('password')
+                  ?.setErrors({ passwordIncorrect: true });
+                this.passwordErrorMessage = 'Password is incorrect';
+              }
+              if (
+                status.errors.email == false &&
+                status.errors.password == false
+              ) {
                 this.errorMessage =
                   'An unknown error has occurred. Please try to login or use a different email.';
                 this.overlayError = true;
@@ -148,11 +97,7 @@ export class LoginComponent {
           this.submitStatus = 'success';
           setTimeout(async () => {
             this.submitStatus = null;
-            if (await this.authService.emailExists(status.data.email)) {
-              this.router.navigate(['/home']);
-            } else {
-              this.overlayUsername = true;
-            }
+            this.router.navigate(['/choose-username']);
           }, 1500);
         }, 2250);
       } else if (status.status == 'failed') {
@@ -175,11 +120,7 @@ export class LoginComponent {
           this.submitStatus = 'success';
           setTimeout(async () => {
             this.submitStatus = null;
-            if (await this.authService.emailExists(status.data.email)) {
-              this.router.navigate(['/home']);
-            } else {
-              this.overlayUsername = true;
-            }
+            this.router.navigate(['/choose-username']);
           }, 1500);
         }, 2250);
       } else if (status.status == 'failed') {
@@ -202,11 +143,7 @@ export class LoginComponent {
           this.submitStatus = 'success';
           setTimeout(async () => {
             this.submitStatus = null;
-            if (await this.authService.emailExists(status.data.email)) {
-              this.router.navigate(['/home']);
-            } else {
-              this.overlayUsername = true;
-            }
+            this.router.navigate(['/choose-username']);
           }, 1500);
         }, 2250);
       } else if (status.status == 'failed') {
@@ -270,40 +207,6 @@ export class LoginComponent {
           }
         } else {
           this.passwordErrorMessage = '';
-        }
-      });
-
-    this.subscription = this.usernameForm
-      .get('username')
-      ?.valueChanges.subscribe(() => {
-        const errors = this.usernameForm.get('username')?.errors;
-        if (errors) {
-          if (errors['required']) {
-            this.usernameErrorMessage = 'This field is required.';
-          } else if (errors['lengthTooShort']) {
-            this.usernameErrorMessage =
-              'Username must be at least 1 character long.';
-          } else if (errors['lengthTooLong']) {
-            this.usernameErrorMessage =
-              'Username must be at most 20 characters long.';
-          } else if (errors['letterInvalid']) {
-            this.usernameErrorMessage =
-              'Username must contain at least one letter.';
-          }
-        } else {
-          this.usernameErrorMessage = '';
-        }
-      });
-
-      this.afAuth.currentUser.then((user) => {
-        //se l'utente è autenticato
-        if (user) {
-          this.authService.emailExists(user.email ?? '').then((exists) => {
-            if (!exists) {
-              //se non esiste, l'utente non ha inserito l'usernmae, poichè si è loggato con un servizio
-              this.overlayUsername = true;
-            }
-          });
         }
       });
   }
