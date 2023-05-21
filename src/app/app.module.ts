@@ -27,9 +27,9 @@ import { CursorService } from './services/cursor/cursor.service';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { NgxTypedJsModule } from 'ngx-typed-js';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
-import { environment } from '../environments/environment';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { ChooseUsernameComponent } from './components/choose-username/choose-username.component';
+import { environment } from './environments/environment';
 
 @NgModule({
   declarations: [
