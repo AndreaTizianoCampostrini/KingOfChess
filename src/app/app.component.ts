@@ -28,7 +28,7 @@ export class AppComponent {
     private router: Router
   ) {
     this.subscription = new Subscription();
-    this.isMobile = this.deviceService.isMobile();
+    this.isMobile = this.deviceService.isMobile() || this.deviceService.isTablet();
   }
 
   ngOnInit(): void {
@@ -66,7 +66,7 @@ export class AppComponent {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
-    this.isMobile = this.deviceService.isMobile();
+    this.isMobile = this.deviceService.isMobile() || this.deviceService.isTablet();
   }
 
   @HostBinding('style.cursor')

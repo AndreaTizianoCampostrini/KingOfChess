@@ -45,6 +45,88 @@ export class AuthService {
     });
   }
 
+  /* Sign In */
+  async login(email: string, password: string): Promise<any> {
+    try {
+      const data = await this.afAuth.signInWithEmailAndPassword(
+        email,
+        password
+      );
+        /*
+                const userInfo = await this.getFirestoreUser(email);
+        if (!userInfo) {
+          //se non esiste, l'utente non ha inserito l'usernmae, poichè si è loggato con un servizio
+          return {
+            status: 'failed',
+            errors: {
+              email: false,
+              password: false,
+            },
+            message: 'Something went wrong.',
+          }
+        } else {
+          //ricrea l'utente con i dati del firestore
+          this.authService.createUser(
+            data['email'],
+            data['username'],
+            data['uid'],
+            data['password']
+          );
+        }
+
+        if (userInfo.status === 'success') {
+          this.loginUser(
+            userInfo.data.email,
+            userInfo.data.username,
+            userInfo.data.uid,
+            password
+          );
+        }
+
+        return userInfo;*/
+      if (data.user) {
+        // Utente trovato e autenticato correttamente
+        return {
+          status: 'success',
+          errors: {
+            email: false,
+            password: false,
+          },
+          data: {
+            email: email,
+            username: '',
+            uid: data.user?.uid != undefined ? data.user?.uid : '',
+            password: password,
+            setting: {},
+            profile: {},
+          },
+          message: 'Login successful.',
+        };
+      } else {
+        // Non è stato trovato alcun utente con queste credenziali
+        const emailError = await this.emailExists(email);
+        const passwordError = await this.passwordCorrect(email, password);
+        return {
+          status: 'failed',
+          errors: {
+            email: !emailError,
+            password: !passwordError,
+          },
+          message: 'Something went wrong.',
+        };
+      }
+    } catch (error) {
+      return {
+        status: 'failed',
+        errors: {
+          email: false,
+          password: false,
+        },
+        message: 'Something went wrong.',
+      };
+    }
+  }
+
   /* Sign Up */
   async register(
     email: string,
@@ -139,7 +221,38 @@ export class AuthService {
     }
   }
 
-  //i sign-in sono uguali solo che non chiedono l'username
+  async signInWithGoogle(): Promise<any> {
+    try {
+      const data = await this.afAuth.signInWithPopup(new GoogleAuthProvider());
+      this.createUser(data.user?.email ?? '', '', data.user?.uid ?? '', '');
+      return {
+        status: 'success',
+        errors: {
+          email: false,
+          username: false,
+        },
+        data: {
+          email: data.user?.email != undefined ? data.user?.email : '',
+          username: '',
+          uid: data.user?.uid != undefined ? data.user?.uid : '',
+          password: '',
+          setting: {},
+          profile: {},
+        },
+        message: 'Login successful.',
+      };
+    } catch (err) {
+      return {
+        status: 'failed',
+        errors: {
+          email: false,
+          username: false,
+        },
+        message: 'Something went wrong.',
+      };
+    }
+  }
+
   async signUpWithFacebook(): Promise<any> {
     try {
       const data = await this.afAuth.signInWithPopup(
@@ -174,6 +287,40 @@ export class AuthService {
     }
   }
 
+  async signInWithFacebook(): Promise<any> {
+    try {
+      const data = await this.afAuth.signInWithPopup(
+        new FacebookAuthProvider()
+      );
+      this.createUser(data.user?.email ?? '', '', data.user?.uid ?? '', '');
+      return {
+        status: 'success',
+        errors: {
+          email: false,
+          username: false,
+        },
+        data: {
+          email: data.user?.email != undefined ? data.user?.email : '',
+          username: '',
+          uid: data.user?.uid != undefined ? data.user?.uid : '',
+          password: '',
+          setting: {},
+          profile: {},
+        },
+        message: 'Login successful.',
+      };
+    } catch (err) {
+      return {
+        status: 'failed',
+        errors: {
+          email: false,
+          username: false,
+        },
+        message: 'Something went wrong.',
+      };
+    }
+  }
+
   async signUpWithTwitter(): Promise<any> {
     try {
       const data = await this.afAuth.signInWithPopup(new TwitterAuthProvider());
@@ -193,6 +340,38 @@ export class AuthService {
           profile: {},
         },
         message: 'Registration successful.',
+      };
+    } catch (err) {
+      return {
+        status: 'failed',
+        errors: {
+          email: false,
+          username: false,
+        },
+        message: 'Something went wrong.',
+      };
+    }
+  }
+
+  async signInWithTwitter(): Promise<any> {
+    try {
+      const data = await this.afAuth.signInWithPopup(new TwitterAuthProvider());
+      this.createUser(data.user?.email ?? '', '', data.user?.uid ?? '', '');
+      return {
+        status: 'success',
+        errors: {
+          email: false,
+          username: false,
+        },
+        data: {
+          email: data.user?.email != undefined ? data.user?.email : '',
+          username: '',
+          uid: data.user?.uid != undefined ? data.user?.uid : '',
+          password: '',
+          setting: {},
+          profile: {},
+        },
+        message: 'Login successful.',
       };
     } catch (err) {
       return {
@@ -258,6 +437,11 @@ export class AuthService {
     return !(await getDocs(emailQuery)).empty;
   }
 
+  async passwordCorrect(email: string, password: string): Promise<boolean> {
+    const user = await this.getFirestoreUser(email);
+    return user['password'] == password;
+  }
+
   async usernameExists(username: string): Promise<boolean> {
     const usernameQuery = query(
       this.database,
@@ -315,7 +499,7 @@ export class AuthService {
     }
   }
 
-  getFirestoreUser(email: string): Promise<any> {
+  async getFirestoreUser(email: string): Promise<any> {
     const userQuery = query(this.database, where('email', '==', email));
     return getDocs(userQuery).then((results) => {
       if (results.empty) {
