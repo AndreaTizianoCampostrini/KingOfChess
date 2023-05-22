@@ -20,8 +20,8 @@ import {
   FontAwesomeModule,
   FaIconLibrary,
 } from '@fortawesome/angular-fontawesome';
-import { faTwitter, faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faTwitter, faFacebook, faGoogle, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faEye, faEyeSlash, faArrowRightToBracket, faCaretLeft, faCaretRight, faChessPawn, faEnvelope, faUser, faGamepad, faPlay, faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import { HomeComponent } from './components/home/home.component';
 import { CursorService } from './services/cursor/cursor.service';
 import { NotFoundComponent } from './components/not-found/not-found.component';
@@ -30,6 +30,7 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { ChooseUsernameComponent } from './components/choose-username/choose-username.component';
 import { environment } from './environments/environment';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { environment } from './environments/environment';
     HomeComponent,
     NotFoundComponent,
     ChooseUsernameComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +73,17 @@ export class AppModule {
       faFacebook,
       faGoogle,
       faEyeSlash,
-      faEye
+      faEye,
+      faArrowRightToBracket,
+      faCaretRight,
+      faCaretLeft,
+      faChessPawn,
+      faGithub,
+      faEnvelope,
+      faUser,
+      faPlay,
+      faCaretDown,
+      faCaretUp
     );
   }
 }

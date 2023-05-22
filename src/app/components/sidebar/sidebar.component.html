@@ -1,0 +1,45 @@
+<div *ngIf="!mobile || (mobile && sidebarExpanded)" class="sidebar"
+  [ngStyle]="{'width': sidebarExpanded &&  mobile ? '100%' : 'auto'}">
+  <div class="sidebar-header">
+    <button class="home-button" (click)="this.router.navigate(['/home'])" [class.mobile]="mobile">
+      <img src="assets/chess.png" alt="logo" width="46px" height="46px" />
+      <p>{{ sidebarExpanded ? 'KingOfChess' : '' }}</p>
+    </button>
+    <button class="play-button" (click)="togglePlaySubMenu(); togglePlayIcon();" [class.mobile]="mobile">
+      <img src="assets/puzzle.png" alt="logo" width="46px" height="46px" />
+      {{ sidebarExpanded ? 'Play' : '' }}
+      <fa-icon *ngIf=sidebarExpanded [icon]="['fas', playIcon]"></fa-icon>
+    </button>
+    <div class="play-sub-menu" *ngIf="playSubMenu && sidebarExpanded">
+      <button (click)="this.router.navigate(['/rush'])" [class.mobile]="mobile">Puzzle rush</button>
+      <button (click)="this.router.navigate(['/search'])" [class.mobile]="mobile">Puzzle search</button>
+      <button (click)="this.router.navigate(['/daily'])" [class.mobile]="mobile">Daily puzzle</button>
+    </div>
+    <!--
+    <button>
+        <fa-icon [icon]="['fas', 'trophy']"></fa-icon>
+      {{ sidebarExpanded ? 'Ranking' : '' }}
+    </button>
+    -->
+  </div>
+  <div class="sidebar-footer">
+    <!--
+    <button (click)="this.router.navigate(['/profile'])">
+      <fa-icon [icon]="['fas', 'user']"></fa-icon>
+      {{ sidebarExpanded ? 'Profile' : '' }}
+    </button>
+      <button class="settings-button" (click)="this.router.navigate(['/settings'])">
+      <fa-icon [icon]="['fas', 'cog']"></fa-icon>
+      {{ sidebarExpanded ? 'Settings' : '' }}
+    </button>
+    -->
+    <button class="toggle-sidebar-button" (click)="toggleSidebar(0); playSubMenu = false; playIcon = 'caret-up'" [class.mobile]="mobile">
+      <fa-icon [icon]="['fas', sidebarExpanded ? 'caret-left' : 'caret-right']"></fa-icon>
+      {{ sidebarExpanded ? 'Collapse' : '' }}
+    </button>
+    <button (click)="logout()" [class.mobile]="mobile">
+      <fa-icon [icon]="['fas', 'arrow-right-to-bracket']" [rotate]="180"></fa-icon>
+      {{ sidebarExpanded ? 'Logout' : '' }}
+    </button>
+  </div>
+</div>

@@ -1,2 +1,23 @@
-<p>home works!</p>
-<button (click)="logout()">Logout</button>
+<app-sidebar></app-sidebar>
+<div *ngIf="mobile" class="home-header">
+  <button (click)="toggleMenu()">☰</button>
+</div>
+<div class="home">
+  <!--awesome home page with effects, animations and transitions-->
+  <div class="home-content">
+    <div class="home-content-header">
+      <h1>Welcome to KingOfChess</h1>
+      <p>Play chess online with friends or random opponents</p>
+    </div>
+    <div class="home-content-body">
+      <button class="home-content-body-button" (click)="this.router.navigate(['/rush'])">
+        <p>Puzzle rush</p>
+      </button>
+      <button class="home-content-body-button" (click)="this.router.navigate(['/search'])">
+        <p>Puzzle search</p>
+      </button>
+      <button class="home-content-body-button" (click)="this.router.navigate(['/daily'])">
+        <p>Daily puzzle</p>
+      </button>
+    </div>
+  </div>
