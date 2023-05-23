@@ -1,4 +1,7 @@
 <app-sidebar></app-sidebar>
+  <button *ngIf="mobile" type="button" class="hamburger-menu-button" (click)="this.sidebar.sidebarExpanded = true;">
+    <i class="fas fa-bars text-white"></i>
+  </button>
 <div class="d-flex justify-content-between flex-column align-items-center fixed w-100 home">
   <div class="header d-flex justify-content-center flex-column align-items-center fixed w-100">
     <h1 class="site-title text-white">KingOfChess</h1>
@@ -7,7 +10,7 @@
   <div class="d-flex flex-column align-items-center justify-content-center w-100 text-white">
     <p class="h1 subtitle">What can you find here?</p>
     <div class="d-flex flex-wrap align-items-center justify-content-evenly gamemode-texts">
-      <p *ngFor="let text of gamemodeTexts">{{text}}</p>
+      <p *ngFor="let text of gamemodeTexts" class="text-center">{{text}}</p>
     </div>
     <div class="d-flex flex-wrap align-items-center justify-content-evenly card-container">
       <button class="card card-background text-white" *ngFor="let card of cards"
@@ -16,7 +19,8 @@
           <p class="h3">{{ card.title }}</p>
           <p class="h5">How to play:</p>
           <img [src]="card.icon" width="80px" height="80px" class="img-fluid p-2">
-          <p class="card-description text-center">{{ card.description }}</p>
+          <p class="card-description">{{
+            card.description }}</p>
           <!--<ul>
             <li *ngFor="let rule of card.rules">{{ rule }}</li>
           </ul>-->

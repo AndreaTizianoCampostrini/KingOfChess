@@ -31,6 +31,8 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { ChooseUsernameComponent } from './components/choose-username/choose-username.component';
 import { environment } from './environments/environment';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { RushComponent } from './components/rush/rush.component';
+import { DailyComponent } from './components/daily/daily.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     NotFoundComponent,
     ChooseUsernameComponent,
     SidebarComponent,
+    RushComponent,
+    DailyComponent,
   ],
   imports: [
     BrowserModule,

@@ -12,6 +12,8 @@ import {
 } from '@angular/fire/auth-guard';
 import { ChooseUsernameComponent } from './components/choose-username/choose-username.component';
 import { ChooseUsernameAuthGuard } from './auth/choose-username-auth.guard';
+import { DailyComponent } from './components/daily/daily.component';
+import { RushComponent } from './components/rush/rush.component';
 
 // Se l'utente non è loggato, reindirizzalo alla pagina di login
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
@@ -54,6 +56,18 @@ const routes: Routes = [
     path: 'choose-username',
     component: ChooseUsernameComponent,
     canActivate: [ChooseUsernameAuthGuard],
+  },
+  {
+    path: 'rush',
+    component: RushComponent,
+    canActivate: [AuthGuard],
+    data: { authGuardPipe: redirectLoggedInToHome },
+  },
+  {
+    path: 'daily',
+    component: DailyComponent,
+    canActivate: [AuthGuard],
+    data: { authGuardPipe: redirectLoggedInToHome },
   },
   { path: '404', component: NotFoundComponent },
   { path: '**', redirectTo: '/404' },

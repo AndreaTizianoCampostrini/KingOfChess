@@ -61,15 +61,11 @@ export class HomeComponent {
 
   ngOnInit(): void {
     this.subscription = this.screenService.width$.subscribe((width: number) => {
-      this.mobile = width < 420;
+      this.mobile = width < 490;
     });
   }
 
   logout() {
     this.authService.logout();
-  }
-
-  toggleMenu() {
-    this.sidebar.sidebarExpanded = !this.sidebar.sidebarExpanded;
   }
 }
