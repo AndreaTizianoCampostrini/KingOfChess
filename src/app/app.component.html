@@ -1,3 +1,4 @@
+<app-cursor *ngIf="!isMobile"></app-cursor>
 <app-app-intro (introAnimationComplete)="introAnimationComplete = true" (introExitComplete)="introExitComplete = true" *ngIf="!introExitComplete"
   [animationDuration]="0.75"
   [animationType]="animationType.FadeOut"
@@ -5,4 +6,3 @@
 ></app-app-intro>
 
 <router-outlet *ngIf="introAnimationComplete"></router-outlet>
-<app-cursor *ngIf="!isMobile"></app-cursor>

@@ -64,8 +64,8 @@ export class RegisterComponent {
               setTimeout(() => {
                 this.submitStatus = null;
                 this.router.navigate(['/home']);
-              }, 1500);
-            }, 2250);
+              }, 1000);
+            }, 400);
           } else if (status.status == 'failed') {
             setTimeout(() => {
               this.submitStatus = 'failed';
@@ -91,8 +91,8 @@ export class RegisterComponent {
                     'An unknown error has occurred. Please try to login or use a different email.';
                   this.overlayError = true;
                 }
-              }, 1500);
-            }, 2250);
+              }, 1000);
+            }, 400);
           }
         });
     }
@@ -108,15 +108,15 @@ export class RegisterComponent {
           setTimeout(async () => {
             this.submitStatus = null;
             this.router.navigate(['/choose-username']);
-          }, 1500);
-        }, 2250);
+          }, 1000);
+        }, 400);
       } else if (status.status == 'failed') {
         setTimeout(() => {
           this.submitStatus = 'failed';
           setTimeout(() => {
             this.submitStatus = null;
-          }, 1500);
-        }, 2250);
+          }, 1000);
+        }, 400);
       }
     });
   }
@@ -131,15 +131,15 @@ export class RegisterComponent {
           setTimeout(async () => {
             this.submitStatus = null;
             this.router.navigate(['/choose-username']);
-          }, 1500);
-        }, 2250);
+          }, 1000);
+        }, 400);
       } else if (status.status == 'failed') {
         setTimeout(() => {
           this.submitStatus = 'failed';
           setTimeout(() => {
             this.submitStatus = null;
-          }, 1500);
-        }, 2250);
+          }, 1000);
+        }, 400);
       }
     });
   }
@@ -154,15 +154,15 @@ export class RegisterComponent {
           setTimeout(async () => {
             this.submitStatus = null;
             this.router.navigate(['/choose-username']);
-          }, 1500);
-        }, 2250);
+          }, 1000);
+        }, 400);
       } else if (status.status == 'failed') {
         setTimeout(() => {
           this.submitStatus = 'failed';
           setTimeout(() => {
             this.submitStatus = null;
-          }, 1500);
-        }, 2250);
+          }, 1000);
+        }, 400);
       }
     });
   }

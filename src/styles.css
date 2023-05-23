@@ -7,3 +7,8 @@
   padding: 0;
   cursor: none !important;
 }
+
+body {
+  margin: 0;
+  padding: 0;
+}

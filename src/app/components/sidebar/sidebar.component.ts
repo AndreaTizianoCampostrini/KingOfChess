@@ -29,7 +29,7 @@ export class SidebarComponent {
   ngOnInit() {
     this.subscription = this.screenService.width$.subscribe((width: number) => {
       this.sidebarExpanded = width >= 1200;
-      this.mobile = width < 420;
+      this.mobile = width < 490;
     });
   }
 

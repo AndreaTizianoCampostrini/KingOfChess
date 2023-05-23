@@ -12,7 +12,6 @@
     </button>
     <div class="play-sub-menu" *ngIf="playSubMenu && sidebarExpanded">
       <button (click)="this.router.navigate(['/rush'])" [class.mobile]="mobile">Puzzle rush</button>
-      <button (click)="this.router.navigate(['/search'])" [class.mobile]="mobile">Puzzle search</button>
       <button (click)="this.router.navigate(['/daily'])" [class.mobile]="mobile">Daily puzzle</button>
     </div>
     <!--

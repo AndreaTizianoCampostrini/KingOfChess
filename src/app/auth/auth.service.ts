@@ -218,10 +218,11 @@ export class AuthService {
   }
 
   async signUpWithFacebook(): Promise<any> {
+    var provider = new FacebookAuthProvider();
+    provider.addScope('user_birthday, email');
+
     try {
-      const data = await this.afAuth.signInWithPopup(
-        new FacebookAuthProvider()
-      );
+      const data = await this.afAuth.signInWithPopup(provider);
       this.createUser(data.user?.email ?? '', '', data.user?.uid ?? '', '');
       return {
         status: 'success',
@@ -252,10 +253,10 @@ export class AuthService {
   }
 
   async signInWithFacebook(): Promise<any> {
+    var provider = new FacebookAuthProvider();
+    provider.addScope('user_birthday, email');
     try {
-      const data = await this.afAuth.signInWithPopup(
-        new FacebookAuthProvider()
-      );
+      const data = await this.afAuth.signInWithPopup(provider);
       this.createUser(data.user?.email ?? '', '', data.user?.uid ?? '', '');
       return {
         status: 'success',

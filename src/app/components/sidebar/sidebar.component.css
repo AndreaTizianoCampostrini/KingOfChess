@@ -1,8 +1,9 @@
 .sidebar {
-  left: 0;
   position: fixed;
-  z-index: 9000;
+  top: 0;
+  left: 0;
   height: 100vh;
+  z-index: 999;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -102,7 +103,7 @@ button.mobile {
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 490px) {
   .toggle-sidebar-button {
     display: flex;
   }
