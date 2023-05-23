@@ -19,3 +19,9 @@
   font-style: 600;
   color: #fff;
 }
+
+.game-result {
+  padding: 10px 15px;
+  z-index: 9998;
+  border: none;
+}

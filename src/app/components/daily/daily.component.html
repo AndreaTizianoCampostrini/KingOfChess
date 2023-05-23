@@ -2,6 +2,17 @@
 <button *ngIf="mobile" type="button" class="hamburger-menu-button" (click)="this.sidebar.sidebarExpanded = true;">
   <i class="fas fa-bars text-white"></i>
 </button>
+<div *ngIf="ended"
+  class="w-100 h-100 z-3 d-flex flex-column align-items-center justify-content-center position-fixed game-result">
+  <div class="d-flex flex-column align-items-center justify-content-center">
+    <h2 *ngIf="win">Well done!</h2>
+    <h2 *ngIf="!win">You lose!</h2>
+    <button (click)="this.router.navigate(['home']);">Quit</button>
+    <button (click)="this.resetGame(); this.ended = false; this.win = null">Play again</button>
+  </div>
+</div>
 <div class="chess-game-container d-flex justify-content-center align-items-center flex-column w-100 vh-100">
-<ngx-chess-board #board [size]="size" [lightTileColor]="'#eeeed2'" [darkTileColor]="'#769656'" [showLastMove]="true" [lightDisabled]="light" [darkDisabled]="dark" [freeMode]="false" [showActivePiece]="true" (move)="onMove($event)"></ngx-chess-board>
+  <ngx-chess-board #board [size]="size" [lightTileColor]="'#eeeed2'" [darkTileColor]="'#769656'" [showLastMove]="true"
+    [lightDisabled]="light" [darkDisabled]="dark" [freeMode]="false" [showActivePiece]="true"
+    (moveChange)="onMove($event)"></ngx-chess-board>
 </div>

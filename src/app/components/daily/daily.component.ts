@@ -29,6 +29,10 @@ export class DailyComponent {
   size = 400;
   dark: boolean = false;
   light: boolean = true;
+  move: number = 0;
+  ended: boolean = true;
+  win: boolean | null = null;
+  initPgn: string = '';
 
   constructor(
     public ngxChessBoardService: NgxChessBoardService,
@@ -41,8 +45,8 @@ export class DailyComponent {
     this.mobile = false;
     this.chessService.getDailyPuzzle().subscribe(
       (data) => {
-        console.log(data);
         this.board.setPGN(data.game.pgn);
+        this.initPgn = data.game.pgn;
         if (
           this.board.getMoveHistory()[this.board.getMoveHistory().length - 1]
             .color != 'black'
@@ -55,6 +59,7 @@ export class DailyComponent {
           this.light = false;
         }
         this.solution = data.puzzle.solution;
+        this.ended = false;
       },
       (err) => {
         console.error(err);
@@ -65,7 +70,7 @@ export class DailyComponent {
   ngOnInit(): void {
     this.subscription = this.screenService.width$.subscribe((width: number) => {
       this.mobile = width < 490;
-      if(this.mobile) {
+      if (this.mobile) {
         this.size = width * 0.7;
       }
       this.size = width * 0.4;
@@ -73,16 +78,46 @@ export class DailyComponent {
   }
 
   onMove(event: any) {
-  }
-  /*moveMade(e) {
-    // e is an object { from: ..., to: ... }
-    console.log(e);
-    // The library doesn't handle game logic, you have to do it by yourself.
-    this.chessGame.move(e);
-    // Here you could implement AI logic based on the difficulty level
-    // if it's AI's turn to move
-    if (this.chessGame.turn() !== this.playerColor) {
-      // compute AI's move and update chessGame
+    if (!this.ended) {
+      if (
+        (event.color == 'black' && this.light) ||
+        (event.color == 'white' && this.dark)
+      ) {
+        console.log(this.solution[this.move]);
+        console.log(event.move);
+        if (event.move == this.solution[this.move]) {
+          this.move++;
+          console.log('si');
+
+          if (this.move == this.solution.length) {
+            console.log('si');
+            this.ended = true;
+            this.win = true;
+          }
+        } else {
+          console.log('no');
+          this.ended = true;
+          this.win = false;
+        }
+      }
     }
-  }*/
+  }
+  resetGame() {
+    this.board.reset();
+    if (this.initPgn != '') {
+      this.board.setPGN(this.initPgn);
+      if (
+        this.board.getMoveHistory()[this.board.getMoveHistory().length - 1]
+          .color != 'black'
+      ) {
+        this.board.reverse();
+        this.dark = false;
+        this.light = true;
+      } else {
+        this.dark = true;
+        this.light = false;
+      }
+      this.ended = false;
+    }
+  }
 }
