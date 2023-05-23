@@ -1,7 +1,7 @@
 <app-sidebar></app-sidebar>
-  <button *ngIf="mobile" type="button" class="hamburger-menu-button" (click)="this.sidebar.sidebarExpanded = true;">
-    <i class="fas fa-bars text-white"></i>
-  </button>
+<button *ngIf="mobile" type="button" class="hamburger-menu-button" (click)="this.sidebar.sidebarExpanded = true;">
+  <i class="fas fa-bars text-white"></i>
+</button>
 <div class="d-flex justify-content-between flex-column align-items-center fixed w-100 home">
   <div class="header d-flex justify-content-center flex-column align-items-center fixed w-100">
     <h1 class="site-title text-white">KingOfChess</h1>
@@ -14,7 +14,7 @@
     </div>
     <div class="d-flex flex-wrap align-items-center justify-content-evenly card-container">
       <button class="card card-background text-white" *ngFor="let card of cards"
-        (click)="this.router.navigate([card.route])">
+        (click)="this.router.navigate([card.route]);">
         <div class="card-body p-5">
           <p class="h3">{{ card.title }}</p>
           <p class="h5">How to play:</p>
@@ -28,7 +28,7 @@
       </button>
     </div>
   </div>
-  <button class="cta-button" (click)="this.router.navigate(['/daily'])">Start solving puzzles</button>
+  <button class="cta-button" (click)="this.router.navigate(['daily']);">Start solving puzzles</button>
 
   <div class="footer">
     <p class="footer-text">&copy; 2023 KingOfChess. All rights reserved.</p>

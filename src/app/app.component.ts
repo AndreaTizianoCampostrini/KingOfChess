@@ -37,7 +37,6 @@ export class AppComponent {
         this.introAnimationComplete = true;
       })
     );
-
     this.subscription.add(
       this.introService.introComplete$.subscribe(() => {
         this.introExitComplete = true;

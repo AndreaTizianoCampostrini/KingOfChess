@@ -12,6 +12,10 @@
   font-weight: 400;
 }
 
+button {
+  z-index: 101;
+}
+
 .home {
   background-color: rgb(49, 46, 43);
   min-height: 100vh;

@@ -33,6 +33,7 @@ import { environment } from './environments/environment';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { RushComponent } from './components/rush/rush.component';
 import { DailyComponent } from './components/daily/daily.component';
+import { NgxChessBoardModule } from 'ngx-chess-board';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,7 @@ import { DailyComponent } from './components/daily/daily.component';
     ChooseUsernameComponent,
     SidebarComponent,
     RushComponent,
-    DailyComponent,
+    DailyComponent
   ],
   imports: [
     BrowserModule,
@@ -62,6 +63,7 @@ import { DailyComponent } from './components/daily/daily.component';
     NgParticlesModule,
     CommonModule,
     FontAwesomeModule,
+    NgxChessBoardModule,
     NgxTypedJsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideDatabase(() => getDatabase()),

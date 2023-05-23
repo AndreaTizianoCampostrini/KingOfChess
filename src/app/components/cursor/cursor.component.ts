@@ -35,8 +35,9 @@ export class CursorComponent implements OnInit {
   }
 
   private isCursorInsideDocument(x: number, y: number): boolean {
-    const documentWidth = document.documentElement.offsetWidth;
-    const documentHeight = document.documentElement.offsetHeight;
+    //page height
+    const documentWidth = document.documentElement.scrollWidth;
+    const documentHeight = document.documentElement.scrollHeight;
 
     return x >= 0 && x <= documentWidth && y >= 0 && y <= documentHeight;
   }
