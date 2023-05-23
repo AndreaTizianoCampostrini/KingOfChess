@@ -32,7 +32,7 @@
     "gsap": "^3.11.5",
     "ng-particles": "^3.9.3",
     "ngx-chess-board": "^2.2.3",
-    "ngx-device-detector": "^5.0.0",
+    "ngx-device-detector": "^5.0.1",
     "ngx-typed-js": "^2.1.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
